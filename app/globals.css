@@ -29,6 +29,22 @@
   color: black;
 }
 
+.btn-transparent {
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  border: 2px solid #C7A86C;
+  color: #C7A86C; 
+  border-radius: 0.5rem; 
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-transparent:hover {
+  background-color: #C7A86C;
+  color: #1a3a2e;                       
+}
+
 /* google  */
 .goog-te-gadget span {
   display: none !important;
@@ -87,7 +103,7 @@ h2 {
 }
 
 h3 {
-  font-size: 2rem; /* ~32px */
+  font-size: 1.5rem; /* ~32px */
 }
 
 h4 {
@@ -107,7 +123,6 @@ span,
 li,
 a {
   font-family: "Inter", sans-serif;
-  font-size: 1rem;
 }
 
 a, link {
@@ -125,14 +140,3 @@ a, link {
   line-height: 1.8;
 }
 
-
-@media (max-width: 768px) {
-  h1 { font-size: 2.6rem; }
-  h2 { font-size: 2rem; }
-  h3 { font-size: 1.6rem; }
-  h4 { font-size: 1.3rem; }
-
-  p, span, li {
-    font-size: 0.95rem;
-  }
-}
