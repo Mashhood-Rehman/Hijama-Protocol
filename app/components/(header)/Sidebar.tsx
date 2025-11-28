@@ -18,7 +18,7 @@ export default function Sidebar({ open, setOpen, navItems }: SidebarProps) {
     >
       {/* Actual Sidebar */}
       <div
-        className={`absolute top-0 left-0 h-full w-64 bg-[#0A2F23] text-white p-5 transition-transform ${
+        className={`absolute top-0 left-0 h-full w-64 bg-(--dark-green) text-white p-5 transition-transform ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -35,7 +35,7 @@ export default function Sidebar({ open, setOpen, navItems }: SidebarProps) {
             <Link
               key={item.label}
               href={item.href}
-              className="text-sm py-1 hover:text-[#C7A86C] transition"
+              className="text-sm py-1 hover:text-(--gold) transition"
               onClick={() => setOpen(false)}
             >
               {item.label}
@@ -43,11 +43,11 @@ export default function Sidebar({ open, setOpen, navItems }: SidebarProps) {
           ))}
 
           {/* Extra buttons */}
-          <button className="text-sm text-left mt-4 hover:text-[#C7A86C]">
+          <button className="text-sm text-left mt-4 hover:text-(--gold)">
             EN / UR
           </button>
 
-          <button className="text-sm text-left hover:text-[#C7A86C]">
+          <button className="text-sm text-left hover:text-(--gold)">
             Cart 🛒
           </button>
         </div>

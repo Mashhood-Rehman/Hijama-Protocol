@@ -1,4 +1,4 @@
-import { Activity, Brain, ChevronLeft, ChevronRight, Dna, Droplet, Heart, Menu, Shield, ShoppingCart, Sparkle, Sparkles, Target, X, Zap } from "lucide-react";
+import { Activity, Award, BookOpen, Brain, ChevronLeft, ChevronRight, Dna, Download, Droplet, ExternalLink, FileText, Headphones, Heart, Menu, Package, Quote, Send, Share2, Shield, ShoppingCart, Sparkle, Sparkles, Star, Target, TrendingUp, Truck, Users, X, Zap } from "lucide-react";
 
  const ICONS = {
     Menu,
@@ -15,6 +15,21 @@ import { Activity, Brain, ChevronLeft, ChevronRight, Dna, Droplet, Heart, Menu, 
     Brain,
     Heart,
     Target,
+    Star,
+    Quote,
+    Users,
+    ShoppingCart,
+    Package,
+    FileText,
+    BookOpen,
+    ExternalLink,
+    Download,
+    Send,
+    TrendingUp,
+    Award,
+    Share2,
+    Headphones,
+    Truck
 
 
 }   

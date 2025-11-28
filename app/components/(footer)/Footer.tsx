@@ -21,13 +21,13 @@ export default function Footer() {
 
         {/* Products */}
         <div>
-          <h4 className="text-lg font-semibold mb-4 text-[#C7A86C]">Products</h4>
+          <h4 className="text-lg font-semibold mb-4 text-(--gold)">Products</h4>
           <ul className="space-y-2">
             {footerLinks.products.map((item) => (
               <li key={item.label}>
                 <Link
                   href={item.href}
-                  className="text-sm hover:text-[#C7A86C] transition"
+                  className="text-sm hover:text-(--gold) transition"
                 >
                   {item.label}
                 </Link>
@@ -38,13 +38,13 @@ export default function Footer() {
 
         {/* Company */}
         <div>
-          <h4 className="text-lg font-semibold mb-4 text-[#C7A86C]">Company</h4>
+          <h4 className="text-lg font-semibold mb-4 text-(--gold)">Company</h4>
           <ul className="space-y-2">
             {footerLinks.company.map((item) => (
               <li key={item.label}>
                 <Link
                   href={item.href}
-                  className="text-sm hover:text-[#C7A86C] transition inline-block"
+                  className="text-sm hover:text-(--gold) transition inline-block"
                 >
                   {item.label}
                 </Link>
@@ -55,13 +55,13 @@ export default function Footer() {
 
         {/* Support */}
         <div>
-          <h4 className="text-lg font-semibold mb-4 text-[#C7A86C]">Support</h4>
+          <h4 className="text-lg font-semibold mb-4 text-(--gold)">Support</h4>
           <ul className="space-y-2">
             {footerLinks.support.map((item) => (
               <li key={item.label}>
                 <Link
                   href={item.href}
-                  className="text-sm hover:text-[#C7A86C] transition inline-block"
+                  className="text-sm hover:text-(--gold) transition inline-block"
                 >
                   {item.label}
                 </Link>
@@ -80,10 +80,10 @@ export default function Footer() {
           </p>
 
           <div className="flex items-center gap-6 text-sm">
-            <Link href="/privacy" className="hover:text-[#C7A86C] transition">
+            <Link href="/privacy" className="hover:text-(--gold) transition">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-[#C7A86C] transition">
+            <Link href="/terms" className="hover:text-(--gold) transition">
               Terms of Service
             </Link>
           </div>

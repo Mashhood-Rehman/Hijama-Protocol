@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SectionHeader from "../(common)/SectionHeader";
 
 const productHighlights = [
   {
@@ -25,10 +26,7 @@ export default function ProductHighlights() {
   return (
     <section >
       <div>
-
-        <h2 className="text-4xl font-semibold text-center text-(--gold) mb-12">
-          Product Highlights
-        </h2>
+        <SectionHeader heading="Product Highlights" />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {productHighlights.map((p) => (

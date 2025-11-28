@@ -59,7 +59,7 @@ export default function Navbar() {
                             <Link
                                 key={item.label}
                                 href={item.href}
-                                className="text-sm hover:text-[#C7A86C] transition"
+                                className="text-sm hover:text-(--gold) transition"
                             >
                                 {item.label}
                             </Link>

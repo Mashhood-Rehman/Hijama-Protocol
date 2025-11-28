@@ -40,7 +40,7 @@ export default function Hero() {
             Purification Engineered.<br /> Tradition Elevated.
           </h1>
 
-          <p className="text-lg md:text-xl text-[#C7A86C] h-8 transition-all duration-500">
+          <p className="text-lg md:text-xl text-(--gold) h-8 transition-all duration-500">
             {rotatingText[textIndex]}
           </p>
         </div>
@@ -74,21 +74,21 @@ export default function Hero() {
             
             {/* LEFT PRODUCT - RÜH-ARMOR */}
             <div className="absolute left-[5%] md:left-[15%] bottom-[20%] flex flex-col items-center">
-              <div className="w-32 h-32 md:w-40 md:h-40 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg shadow-2xl drop-shadow-xl flex items-center justify-center">
+              <div className="w-32 h-32 md:w-40 md:h-40 bg-linear-to-br from-blue-500 to-blue-700 rounded-lg shadow-2xl drop-shadow-xl flex items-center justify-center">
                 <span className="text-white text-xs font-bold">RÜH-ARMOR</span>
               </div>
             </div>
 
             {/* CENTER PRODUCT (ELEVATED) - NUR-ARMOR */}
             <div className="absolute left-1/2 -translate-x-1/2 top-[5%] flex flex-col items-center z-10">
-              <div className="w-36 h-36 md:w-48 md:h-48 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg shadow-2xl drop-shadow-2xl scale-110 flex items-center justify-center">
+              <div className="w-36 h-36 md:w-48 md:h-48 bg-linear-to-br from-blue-400 to-blue-600 rounded-lg shadow-2xl drop-shadow-2xl scale-110 flex items-center justify-center">
                 <span className="text-white text-sm font-bold">NUR-ARMOR</span>
               </div>
             </div>
 
             {/* RIGHT PRODUCT - Augmented NAC */}
             <div className="absolute right-[5%] md:right-[15%] bottom-[20%] flex flex-col items-center">
-              <div className="w-32 h-32 md:w-40 md:h-40 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg shadow-2xl drop-shadow-xl flex items-center justify-center">
+              <div className="w-32 h-32 md:w-40 md:h-40 bg-linear-to-br from-blue-500 to-blue-700 rounded-lg shadow-2xl drop-shadow-xl flex items-center justify-center">
                 <span className="text-white text-xs font-bold">AUG. NAC</span>
               </div>
             </div>
@@ -115,7 +115,7 @@ export default function Hero() {
               Buy Now
             </button>
 
-            <button className="bn btn-transparent">
+            <button className="btn btn-transparent">
               Download Studies
             </button>
           </div>
