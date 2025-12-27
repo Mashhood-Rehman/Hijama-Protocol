@@ -17,19 +17,19 @@ export default function StoreBundles() {
                         <div
                             key={bundle.id}
                             className={`relative rounded-xl border-2 p-6 flex flex-col h-full transition-all hover:shadow-xl ${bundle.featured
-                                ? "border-(--gold) bg-linear-to-br from-[#faf8f3] to-white"
+                                ? "border-(--luxe-gold) bg-linear-to-br from-[#faf8f3] to-white"
                                 : "border-gray-200 bg-white hover:border-[#8fb996]"
                                 }`}
                         >
                             {bundle.featured && (
-                                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-(--gold) text-white px-4 py-1 rounded-full text-xs font-bold">
+                                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-(--luxe-gold) text-white px-4 py-1 rounded-full text-xs font-bold">
                                     MOST POPULAR
                                 </div>
                             )}
 
                             <div className="flex items-center gap-3 mb-4">
                                 <div
-                                    className={`w-12 h-12 rounded-lg flex items-center justify-center ${bundle.featured ? "bg-(--gold)" : "bg-[#1a3a2e]"
+                                    className={`w-12 h-12 rounded-lg flex items-center justify-center ${bundle.featured ? "bg-(--luxe-gold)" : "bg-[#1a3a2e]"
                                         }`}
                                 >
                                     <IconComponent className="w-6 h-6 text-white" />
@@ -63,7 +63,7 @@ export default function StoreBundles() {
                                     <span className="text-3xl font-bold text-[#1a3a2e]">
                                         {bundle.price}
                                     </span>
-                                    <span className="text-sm font-semibold text-(--gold)">
+                                    <span className="text-sm font-semibold text-(--luxe-gold)">
                                         {bundle.savings}
                                     </span>
                                 </div>

@@ -60,7 +60,7 @@ export default function AuthoritySection() {
 
         {/* Section Title */}
 
-        <SectionHeader heading=" Scientific Authority & Clinical Trust" paragraph="Science & Testimony" headingColor="text-(--gold)" />
+        <SectionHeader heading=" Scientific Authority & Clinical Trust" paragraph="Science & Testimony" headingColor="text-(--luxe-gold)" />
         {/* Video Carousel */}
         <div className="relative">
           {/* Left Arrow */}
@@ -85,13 +85,13 @@ export default function AuthoritySection() {
                 className="shrink-0 w-[280px] md:w-[320px] cursor-pointer group"
                 onClick={() => setSelectedVideo(video)}
               >
-                <div className="relative bg-gray-900 rounded-lg overflow-hidden border border-[#8fb996]/30 hover:border-(--gold) transition">
+                <div className="relative bg-gray-900 rounded-lg overflow-hidden border border-[#8fb996]/30 hover:border-(--luxe-gold) transition">
                   {/* Thumbnail */}
                   <div className="relative h-[180px] bg-linear-to-br from-gray-800 to-gray-900 flex items-center justify-center">
                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition"></div>
 
                     {/* Play Button */}
-                    <div className="relative z-10 w-16 h-16 bg-(--gold) rounded-full flex items-center justify-center group-hover:scale-110 transition">
+                    <div className="relative z-10 w-16 h-16 bg-(--luxe-gold) rounded-full flex items-center justify-center group-hover:scale-110 transition">
                       <svg className="w-8 h-8 text-black ml-1" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M8 5v14l11-7z" />
                       </svg>
@@ -127,7 +127,7 @@ export default function AuthoritySection() {
         <div className="mt-20">
           {/* Laboratory Results */}
           <div>
-            <h3 className="text-xl font-semibold text-(--gold) mb-6 uppercase tracking-wider">
+            <h3 className="text-xl font-semibold text-(--luxe-gold) mb-6 uppercase tracking-wider">
               Laboratory Results:
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -147,7 +147,7 @@ export default function AuthoritySection() {
 
           {/* Clinical Endorsements */}
           <div className="mt-16">
-            <h3 className="text-xl font-semibold text-(--gold) mb-6 uppercase tracking-wider">
+            <h3 className="text-xl font-semibold text-(--luxe-gold) mb-6 uppercase tracking-wider">
               Clinical Endorsements:
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -201,7 +201,7 @@ export default function AuthoritySection() {
               <div className="p-6 border-t border-gray-700">
                 <button
                   onClick={() => setShowTranscript(!showTranscript)}
-                  className="px-4 py-2 bg-(--gold) text-black rounded hover:bg-[#d4b87a] transition"
+                  className="px-4 py-2 bg-(--luxe-gold) text-black rounded hover:bg-[#d4b87a] transition"
                 >
                   {showTranscript ? "Hide Transcript" : "Show Transcript"}
                 </button>

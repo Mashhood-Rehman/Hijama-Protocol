@@ -28,17 +28,17 @@ export default function EducationCommunity() {
             <div
               key={resource.id}
               className={`relative rounded-xl border-2 p-8 transition-all hover:shadow-xl ${resource.featured
-                  ? "border-(--gold) bg-linear-to-br from-[#faf8f3] to-white"
-                  : "border-gray-200 bg-white hover:border-[#8fb996]"
+                ? "border-(--luxe-gold) bg-linear-to-br from-[#faf8f3] to-white"
+                : "border-gray-200 bg-white hover:border-[#8fb996]"
                 }`}
             >
               {resource.featured && (
-                <div className="absolute -top-3 right-6 bg-(--gold) text-white px-4 py-1 rounded-full text-xs font-bold">
+                <div className="absolute -top-3 right-6 bg-(--luxe-gold) text-white px-4 py-1 rounded-full text-xs font-bold">
                   JOIN 5,000+ MEMBERS
                 </div>
               )}
 
-              <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 ${resource.featured ? "bg-(--gold)" : "bg-[#1a3a2e]"
+              <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 ${resource.featured ? "bg-(--luxe-gold)" : "bg-[#1a3a2e]"
                 }`}>
                 <resource.icon className="w-8 h-8 text-white" />
               </div>
@@ -51,15 +51,15 @@ export default function EducationCommunity() {
               <ul className="space-y-3 mb-6">
                 {resource.items.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-2">
-                    <div className="w-1.5 h-1.5 bg-(--gold) rounded-full mt-2 shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-(--luxe-gold) rounded-full mt-2 shrink-0"></div>
                     <span className="text-sm text-gray-700">{item}</span>
                   </li>
                 ))}
               </ul>
 
               <button className={`inline-flex items-center gap-2 w-full justify-center py-3 rounded-lg font-semibold transition ${resource.featured
-                  ? "bg-(--gold) text-white hover:bg-[#d4b87a]"
-                  : "bg-[#1a3a2e] text-white hover:bg-[#2d5a4a]"
+                ? "bg-(--luxe-gold) text-white hover:bg-[#d4b87a]"
+                : "bg-[#1a3a2e] text-white hover:bg-[#2d5a4a]"
                 }`}>
                 {resource.action}
                 <ICONS.ExternalLink className="w-4 h-4" />
@@ -72,7 +72,7 @@ export default function EducationCommunity() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         <div className="lg:col-span-7 bg-white rounded-xl border-2 border-gray-200 p-8">
           <div className="flex items-center gap-3 mb-6">
-            <ICONS.Download className="w-8 h-8 text-(--gold)" />
+            <ICONS.Download className="w-8 h-8 text-(--luxe-gold)" />
             <h3 className="text-2xl font-bold text-[#1a3a2e]">
               Download Research Files
             </h3>
@@ -93,7 +93,7 @@ export default function EducationCommunity() {
                     <ICONS.FileText className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-[#1a3a2e] group-hover:text-(--gold) transition">
+                    <h4 className="font-semibold text-[#1a3a2e] group-hover:text-(--luxe-gold) transition">
                       {file.name}
                     </h4>
                     <p className="text-xs text-gray-500">
@@ -101,7 +101,7 @@ export default function EducationCommunity() {
                     </p>
                   </div>
                 </div>
-                <button className="p-2 rounded-lg bg-white border-2 border-gray-200 group-hover:border-(--gold) group-hover:bg-(--gold) transition">
+                <button className="p-2 rounded-lg bg-white border-2 border-gray-200 group-hover:border-(--luxe-gold) group-hover:bg-(--luxe-gold) transition">
                   <ICONS.Download className="w-5 h-5 text-gray-600 group-hover:text-white" />
                 </button>
               </div>
@@ -110,7 +110,7 @@ export default function EducationCommunity() {
         </div>
 
         <div className="lg:col-span-5 bg-linear-to-br from-[#1a3a2e] to-[#2d5a4a] rounded-xl p-8 text-white">
-          <ICONS.Send className="w-8 h-8 text-(--gold) mb-4" />
+          <ICONS.Send className="w-8 h-8 text-(--luxe-gold) mb-4" />
           <h3 className="text-2xl font-bold mb-3">Stay Updated</h3>
           <p className="text-gray-300 mb-6">
             Get exclusive research updates, protocol guides, and community insights delivered to your inbox
@@ -122,7 +122,7 @@ export default function EducationCommunity() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
-              className="w-full px-4 py-3 rounded-lg bg-white/10 border-2 border-white/20 text-white placeholder-gray-400 focus:border-(--gold) focus:outline-none transition"
+              className="w-full px-4 py-3 rounded-lg bg-white/10 border-2 border-white/20 text-white placeholder-gray-400 focus:border-(--luxe-gold) focus:outline-none transition"
             />
             <button
               onClick={handleSubscribe}

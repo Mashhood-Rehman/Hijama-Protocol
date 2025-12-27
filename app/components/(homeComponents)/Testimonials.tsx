@@ -36,17 +36,17 @@ export default function Testimonials() {
     );
 
     return (
-        <section className="py-20 px-5 bg-linear-to-b from-gray-50 to-white">
+        <section className="bg-linear-to-b from-gray-50 to-white">
             <div className="text-center mb-12">
-         
-        <SectionHeader heading=" Testimonials & Reviews" paragraph=" Real experiences from doctors and patients worldwide" />
+
+                <SectionHeader heading=" Testimonials & Reviews" paragraph=" Real experiences from doctors and patients worldwide" />
 
                 <div className="flex flex-wrap items-center justify-center gap-3">
                     <button
                         onClick={() => setFilter("all")}
                         className={`px-6 py-2 rounded-full cursor-pointer font-medium transition ${filter === "all"
-                                ? "bg-[#1a3a2e] text-white"
-                                : "bg-white border-2 border-gray-200 text-gray-700 hover:border-[#8fb996]"
+                            ? "bg-[#1a3a2e] text-white"
+                            : "bg-white border-2 border-gray-200 text-gray-700 hover:border-[#8fb996]"
                             }`}
                     >
                         All Reviews
@@ -54,8 +54,8 @@ export default function Testimonials() {
                     <button
                         onClick={() => setFilter("medical")}
                         className={`px-6 py-2 rounded-full cursor-pointer font-medium transition ${filter === "medical"
-                                ? "bg-[#1a3a2e] text-white"
-                                : "bg-white border-2 border-gray-200 text-gray-700 hover:border-[#8fb996]"
+                            ? "bg-[#1a3a2e] text-white"
+                            : "bg-white border-2 border-gray-200 text-gray-700 hover:border-[#8fb996]"
                             }`}
                     >
                         Medical Professionals
@@ -63,8 +63,8 @@ export default function Testimonials() {
                     <button
                         onClick={() => setFilter("patient")}
                         className={`px-6 py-2 rounded-full cursor-pointer font-medium transition ${filter === "patient"
-                                ? "bg-[#1a3a2e] text-white"
-                                : "bg-white border-2 border-gray-200 text-gray-700 hover:border-[#8fb996]"
+                            ? "bg-[#1a3a2e] text-white"
+                            : "bg-white border-2 border-gray-200 text-gray-700 hover:border-[#8fb996]"
                             }`}
                     >
                         Patient Stories
@@ -72,18 +72,18 @@ export default function Testimonials() {
                 </div>
             </div>
 
-            <div className="relative px-16">
+            <div className="relative lg:px-16">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {currentTestimonials.map((testimonial) => (
                         <div
                             key={testimonial.id}
-                            className="bg-white rounded-xl border-2 border-gray-200 p-8 hover:border-(--gold) hover:shadow-lg transition h-full flex flex-col"
+                            className="bg-white rounded-xl border-2 border-gray-200 p-8 hover:border-(--luxe-gold) hover:shadow-lg transition h-full flex flex-col"
                         >
-                            <ICONS.Quote className="w-10 h-10 text-(--gold) mb-4 shrink-0" />
+                            <ICONS.Quote className="w-10 h-10 text-(--luxe-gold) mb-4 shrink-0" />
 
                             <div className="flex items-center gap-1 mb-4">
                                 {Array.from({ length: testimonial.rating }).map((_, i) => (
-                                    <ICONS.Star key={i} className="w-5 h-5 fill-(--gold) text-(--gold)" />
+                                    <ICONS.Star key={i} className="w-5 h-5 fill-(--luxe-gold) text-(--luxe-gold)" />
                                 ))}
                             </div>
 
@@ -97,7 +97,7 @@ export default function Testimonials() {
                                     <div className="flex items-center gap-2">
                                         <h4 className="font-semibold text-[#1a3a2e] truncate">{testimonial.name}</h4>
                                         {testimonial.verified && (
-                                            <div className="w-5 h-5 bg-(--gold) rounded-full flex items-center justify-center flex-shrink-0">
+                                            <div className="w-5 h-5 bg-(--luxe-gold) rounded-full flex items-center justify-center flex-shrink-0">
                                                 <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                                                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                                 </svg>
@@ -115,7 +115,7 @@ export default function Testimonials() {
                     <>
                         <button
                             onClick={handlePrev}
-                            className="absolute left-0 top-1/2 cursor-pointer -translate-y-1/2 w-12 h-12 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center hover:border-(--gold) hover:shadow-lg transition"
+                            className="absolute left-0 top-1/2 cursor-pointer -translate-y-1/2 w-12 h-12 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center hover:border-(--luxe-gold) hover:shadow-lg transition"
                             aria-label="Previous testimonials"
                         >
                             <ICONS.ChevronLeft className="w-6 h-6 text-[#1a3a2e]" />
@@ -123,7 +123,7 @@ export default function Testimonials() {
 
                         <button
                             onClick={handleNext}
-                            className="absolute right-0 top-1/2 cursor-pointer -translate-y-1/2 w-12 h-12 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center hover:border-(--gold) hover:shadow-lg transition"
+                            className="absolute right-0 top-1/2 cursor-pointer -translate-y-1/2 w-12 h-12 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center hover:border-(--luxe-gold) hover:shadow-lg transition"
                             aria-label="Next testimonials"
                         >
                             <ICONS.ChevronRight className="w-6 h-6 text-[#1a3a2e]" />
@@ -138,7 +138,7 @@ export default function Testimonials() {
                         <button
                             key={i}
                             onClick={() => setCurrentSlide(i)}
-                            className={`h-2.5 rounded-full transition-all ${currentSlide === i ? "bg-(--gold) w-8" : "bg-gray-300 w-2.5"
+                            className={`h-2.5 rounded-full transition-all ${currentSlide === i ? "bg-(--luxe-gold) w-8" : "bg-gray-300 w-2.5"
                                 }`}
                             aria-label={`Go to slide ${i + 1}`}
                         />

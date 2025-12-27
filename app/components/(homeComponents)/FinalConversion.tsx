@@ -27,7 +27,7 @@ export default function FinalConversion() {
 
                     {/* CTA Buttons */}
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-                        <button className="group w-full sm:w-auto px-8 py-4 bg-(--gold) text-[#1a3a2e] font-bold rounded-lg hover:bg-[#d4b87a] transition shadow-lg hover:shadow-xl flex items-center justify-center gap-3">
+                        <button className="group w-full sm:w-auto px-8 py-4 bg-(--luxe-gold) text-[#1a3a2e] font-bold rounded-lg hover:bg-[#d4b87a] transition shadow-lg hover:shadow-xl flex items-center justify-center gap-3">
                             <ShoppingBag className="w-5 h-5 group-hover:scale-110 transition-transform" />
                             Shop All Products
                         </button>
@@ -52,7 +52,7 @@ export default function FinalConversion() {
                                     key={index}
                                     className="flex flex-col items-center text-center p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition"
                                 >
-                                    <div className="w-16 h-16 bg-(--gold) rounded-full flex items-center justify-center mb-4">
+                                    <div className="w-16 h-16 bg-(--luxe-gold) rounded-full flex items-center justify-center mb-4">
                                         <IconComponent className="w-8 h-8 text-[#1a3a2e]" />
                                     </div>
                                     <p className="font-semibold text-lg">{element.text}</p>
@@ -66,19 +66,19 @@ export default function FinalConversion() {
                 <div className="mt-12 pt-8 border-t border-white/20">
                     <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-gray-300">
                         <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 bg-(--gold) rounded-full"></div>
+                            <div className="w-2 h-2 bg-(--luxe-gold) rounded-full"></div>
                             <span>Secure Checkout</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 bg-(--gold) rounded-full"></div>
+                            <div className="w-2 h-2 bg-(--luxe-gold) rounded-full"></div>
                             <span>5,000+ Happy Customers</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 bg-(--gold) rounded-full"></div>
+                            <div className="w-2 h-2 bg-(--luxe-gold) rounded-full"></div>
                             <span>Endorsed by 12+ Doctors</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 bg-(--gold) rounded-full"></div>
+                            <div className="w-2 h-2 bg-(--luxe-gold) rounded-full"></div>
                             <span>Made in USA</span>
                         </div>
                     </div>
@@ -86,7 +86,7 @@ export default function FinalConversion() {
 
                 {/* Final Urgency Element */}
                 <div className="mt-8 text-center">
-                    <p className="text-(--gold) font-semibold text-lg">
+                    <p className="text-(--luxe-gold) font-semibold text-lg">
                         Limited Time: First Order Ships Within 24 Hours
                     </p>
                 </div>

@@ -47,7 +47,7 @@ export default function StickyProductBar() {
 
               <Link
                 href={p.href}
-                className="mt-2 text-sm text-(--gold) hover:underline"
+                className="mt-2 text-sm text-(--luxe-gold) hover:underline"
               >
                 Learn More →
               </Link>

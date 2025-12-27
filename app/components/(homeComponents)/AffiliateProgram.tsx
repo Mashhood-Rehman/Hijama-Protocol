@@ -36,10 +36,10 @@ export default function AffiliateProgram() {
                     return (
                         <div
                             key={index}
-                            className="bg-white rounded-xl border-2 border-gray-200 p-6 hover:border-(--gold) hover:shadow-lg transition"
+                            className="bg-white rounded-xl border-2 border-gray-200 p-6 hover:border-(--luxe-gold) hover:shadow-lg transition"
                         >
                             <div className="w-14 h-14 bg-linear-to-br from-[#1a3a2e] to-[#2d5a4a] rounded-xl flex items-center justify-center mb-4">
-                                <benefit.icon className="w-7 h-7 text-(--gold)" />
+                                <benefit.icon className="w-7 h-7 text-(--luxe-gold)" />
                             </div>
                             <h3 className="text-lg font-bold text-[#1a3a2e] mb-2">
                                 {benefit.title}
@@ -55,7 +55,7 @@ export default function AffiliateProgram() {
                     <h3 className="text-2xl font-bold mb-4">Why Partner With Us?</h3>
                     <div className="space-y-4">
                         <div className="flex items-start gap-3">
-                            <div className="w-6 h-6 bg-(--gold) rounded-full flex items-center justify-center shrink-0 mt-1">
+                            <div className="w-6 h-6 bg-(--luxe-gold) rounded-full flex items-center justify-center shrink-0 mt-1">
                                 <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                 </svg>
@@ -66,7 +66,7 @@ export default function AffiliateProgram() {
                             </div>
                         </div>
                         <div className="flex items-start gap-3">
-                            <div className="w-6 h-6 bg-(--gold) rounded-full flex items-center justify-center shrink-0 mt-1">
+                            <div className="w-6 h-6 bg-(--luxe-gold) rounded-full flex items-center justify-center shrink-0 mt-1">
                                 <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                 </svg>
@@ -77,7 +77,7 @@ export default function AffiliateProgram() {
                             </div>
                         </div>
                         <div className="flex items-start gap-3">
-                            <div className="w-6 h-6 bg-(--gold) rounded-full flex items-center justify-center shrink-0 mt-1">
+                            <div className="w-6 h-6 bg-(--luxe-gold) rounded-full flex items-center justify-center shrink-0 mt-1">
                                 <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                 </svg>
@@ -88,7 +88,7 @@ export default function AffiliateProgram() {
                             </div>
                         </div>
                         <div className="flex items-start gap-3">
-                            <div className="w-6 h-6 bg-(--gold) rounded-full flex items-center justify-center shrink-0 mt-1">
+                            <div className="w-6 h-6 bg-(--luxe-gold) rounded-full flex items-center justify-center shrink-0 mt-1">
                                 <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                 </svg>
@@ -101,7 +101,7 @@ export default function AffiliateProgram() {
                     </div>
 
                     <div className="mt-8 p-4 bg-white/10 rounded-lg border border-white/20">
-                        <p className="text-(--gold) font-bold text-lg mb-1">Average Partner Earnings</p>
+                        <p className="text-(--luxe-gold) font-bold text-lg mb-1">Average Partner Earnings</p>
                         <p className="text-3xl font-bold">$3,500 - $12,000/mo</p>
                         <p className="text-xs text-gray-300 mt-1">Based on active affiliates (Q1 2025)</p>
                     </div>
@@ -123,7 +123,7 @@ export default function AffiliateProgram() {
                                     value={formData.name}
                                     onChange={(e) => handleChange("name", e.target.value)}
                                     placeholder="John Doe"
-                                    className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-(--gold) focus:outline-none transition"
+                                    className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-(--luxe-gold) focus:outline-none transition"
                                 />
                             </div>
                             <div>
@@ -135,7 +135,7 @@ export default function AffiliateProgram() {
                                     value={formData.email}
                                     onChange={(e) => handleChange("email", e.target.value)}
                                     placeholder="john@example.com"
-                                    className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-(--gold) focus:outline-none transition"
+                                    className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-(--luxe-gold) focus:outline-none transition"
                                 />
                             </div>
                         </div>
@@ -147,7 +147,7 @@ export default function AffiliateProgram() {
                             <select
                                 value={formData.businessType}
                                 onChange={(e) => handleChange("businessType", e.target.value)}
-                                className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-(--gold) focus:outline-none transition"
+                                className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-(--luxe-gold) focus:outline-none transition"
                             >
                                 <option value="">Select your business type</option>
                                 <option value="influencer">Social Media Influencer</option>
@@ -167,7 +167,7 @@ export default function AffiliateProgram() {
                                 value={formData.socialMedia}
                                 onChange={(e) => handleChange("socialMedia", e.target.value)}
                                 placeholder="@yourusername or profile links"
-                                className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-(--gold) focus:outline-none transition"
+                                className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-(--luxe-gold) focus:outline-none transition"
                             />
                         </div>
 
@@ -178,7 +178,7 @@ export default function AffiliateProgram() {
                             <select
                                 value={formData.expectedVolume}
                                 onChange={(e) => handleChange("expectedVolume", e.target.value)}
-                                className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-(--gold) focus:outline-none transition"
+                                className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-(--luxe-gold) focus:outline-none transition"
                             >
                                 <option value="">Select expected volume</option>
                                 <option value="1-10">1-10 sales/month</option>

@@ -39,7 +39,7 @@ export default function ProductHighlights() {
 
               <Link
                 href={p.href}
-                className="mt-4 inline-block text-(--gold) hover:underline text-sm"
+                className="mt-4 inline-block text-(--luxe-gold) hover:underline text-sm"
               >
                 Learn More →
               </Link>

@@ -33,7 +33,7 @@ export default function Sidebar({ open, setOpen, navItems }: SidebarProps) {
             <Link
               key={item.label}
               href={item.href}
-              className="text-sm py-1 hover:text-(--gold) transition"
+              className="text-sm py-1 hover:text-(--luxe-gold) transition"
               onClick={() => setOpen(false)}
             >
               {item.label}
@@ -41,11 +41,11 @@ export default function Sidebar({ open, setOpen, navItems }: SidebarProps) {
           ))}
 
           {/* Extra buttons */}
-          <button className="text-sm text-left mt-4 hover:text-(--gold)">
+          <button className="text-sm text-left mt-4 hover:text-(--luxe-gold)">
             EN / UR
           </button>
 
-          <button className="text-sm text-left hover:text-(--gold)">
+          <button className="text-sm text-left hover:text-(--luxe-gold)">
             Cart 🛒
           </button>
         </div>

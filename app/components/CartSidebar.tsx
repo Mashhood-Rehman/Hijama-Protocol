@@ -47,7 +47,7 @@ export default function CartSidebar({
         `}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-3 py-2 border-b border-(--dark-green)">
+        <div className="flex items-center justify-between px-3 py-2 border-b border-(--deep-green)">
 
           <button onClick={() => setOpen(false)} className="text-(--charcoal-black)">
             <X size={24} />
@@ -86,12 +86,12 @@ export default function CartSidebar({
                         </button>
                       </div>
 
-                      <p className="text-(--gold) font-semibold mt-1">
+                      <p className="text-(--luxe-gold) font-semibold mt-1">
                         ${item.price}
                       </p>
 
                       <div className="flex items-center gap-3 mt-3">
-                        <button className="w-7 h-7 flex items-center justify-center bg-(--gold) text-(--charcoal-black) rounded-full">
+                        <button className="w-7 h-7 flex items-center justify-center bg-(--luxe-gold) text-(--charcoal-black) rounded-full">
                           <Minus size={16} />
                         </button>
 
@@ -99,7 +99,7 @@ export default function CartSidebar({
                           {item.quantity}
                         </span>
 
-                        <button className="w-7 h-7 flex items-center justify-center bg-(--gold) text-(--charcoal-black) rounded-full">
+                        <button className="w-7 h-7 flex items-center justify-center bg-(--luxe-gold) text-(--charcoal-black) rounded-full">
                           <Plus size={16} />
                         </button>
                       </div>
@@ -112,7 +112,7 @@ export default function CartSidebar({
         </div>
 
         {/* Footer Summary */}
-        <div className="p-5 border-t border-(--dark-green)">
+        <div className="p-5 border-t border-(--deep-green)">
           <div className="flex justify-between text-(--charcoal-black) mb-2">
             <span>Subtotal</span>
             <span className="font-bold">$79.98</span>
@@ -125,10 +125,10 @@ export default function CartSidebar({
 
           <div className="flex justify-between text-lg font-bold text-(--charcoal-black) border-t mt-4 pt-3">
             <span>Total</span>
-            <span className="text-(--gold)">$84.98</span>
+            <span className="text-(--luxe-gold)">$84.98</span>
           </div>
 
-          <button className="w-full mt-4 py-3 bg-(--gold) text-(--charcoal-black) rounded-md font-semibold hover:opacity-90 transition">
+          <button className="w-full mt-4 py-3 bg-(--luxe-gold) text-(--charcoal-black) rounded-md font-semibold hover:opacity-90 transition">
             Checkout
           </button>
         </div>
