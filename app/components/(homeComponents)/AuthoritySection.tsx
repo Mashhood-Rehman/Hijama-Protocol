@@ -156,7 +156,7 @@ export default function AuthoritySection() {
                   key={item.label}
                   className="text-center bg-[#0f2920] border border-[#8fb996]/30 rounded-lg p-8"
                 >
-                  <div className="text-5xl font-bold text-(--gold) mb-3">
+                  <div className="text-5xl font-bold text-(--luxe-gold) mb-3">
                     {item.value}
                   </div>
                   <p className="text-gray-300">{item.label}</p>

@@ -14,7 +14,7 @@ export default function Home() {
     <>
       <Hero />
       <StickyProductBar />
-      <div className="max-w-7xl w-full text-center mx-auto bg-white text-black space-y-24 py-24  px-5">
+      <div className="max-w-7xl w-full text-center mx-auto bg-white text-black space-y-24 md:py-24 py-12  md:px-12 px-4">
         <AuthoritySection />
         <ProductHighlights />
         <ProductDeepDive />

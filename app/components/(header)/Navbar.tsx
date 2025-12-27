@@ -31,25 +31,25 @@ export default function Navbar() {
         }
     }, [isScrolled])
 
-       useEffect(()=> {
+    useEffect(() => {
 
-        const handleClickOutside = (e: MouseEvent) =>{
-            if(ref.current && !(ref.current as any).contains(e.target)) {
+        const handleClickOutside = (e: MouseEvent) => {
+            if (ref.current && !(ref.current as any).contains(e.target)) {
                 setTooltip(false);
             }
         }
-         window.addEventListener("mousedown", handleClickOutside)
-         return () => window.removeEventListener("mousedown", handleClickOutside)
-    },[])
-    
+        window.addEventListener("mousedown", handleClickOutside)
+        return () => window.removeEventListener("mousedown", handleClickOutside)
+    }, [])
+
     useGoogleTranslate();
- 
+
     return (
         <>
-            <nav className={`w-full fixed top-0 left-0 z-50 ${scrolled ? "bg-(--dark-green) text-white" : "bg-white text-black"} transition-colors duration-300 shadow-md `}>
+            <nav className={`w-full fixed top-0 left-0 z-50 ${scrolled ? "bg-(--deep-green) text-white" : "bg-white text-black"} transition-colors duration-300 shadow-md `}>
                 <div className="max-w-7xl mx-auto flex items-center justify-between py-4 px-4">
                     {/* Logo placeholder */}
-                    <Link href="/" className="text-lg font-semibold tracking-wide">
+                    <Link href="/" className="text-lg text-green-500 font-semibold tracking-wide">
                         Hijama Protocol
                     </Link>
 
@@ -59,7 +59,7 @@ export default function Navbar() {
                             <Link
                                 key={item.label}
                                 href={item.href}
-                                className="text-sm hover:text-(--gold) transition"
+                                className="text-sm  hover:text-(--luxe-gold) transition"
                             >
                                 {item.label}
                             </Link>
@@ -72,21 +72,21 @@ export default function Navbar() {
                         <div className="relative" ref={ref}>
                             <button
                                 onClick={() => setTooltip(!tooltip)}
-                                className="hover:text-(--gold) cursor-pointer"
+                                className="hover:text-(--luxe-gold) cursor-pointer"
                             >
                                 <ICONS.ShoppingCart size={22} />
                             </button>
 
                             {tooltip && (
-                                <div className="absolute w-32 right-0 mt-2 bg-white shadow-lg rounded-md p-3 z-200">
-                                    <p className="text-xs text-(--black)">Items: 3</p>
+                                <div className="absolute w-32 text-black right-0 mt-2 bg-white shadow-lg rounded-md p-3 z-200">
+                                    <p className="text-xs ">Items: 3</p>
 
                                     <button
                                         onClick={() => {
                                             setTooltip(false);
                                             setCartOpen(true);
                                         }}
-                                        className="mt-2 w-full py-2 bg-(--gold) text-white cursor-pointer rounded-md hover:opacity-90 transition"
+                                        className="mt-2 w-full py-2 bg-(--luxe-gold) text-white cursor-pointer rounded-md hover:opacity-90 transition"
                                     >
                                         View Cart
                                     </button>
@@ -100,7 +100,7 @@ export default function Navbar() {
 
                     {/* Mobile Toggle */}
                     <button
-                        className="md:hidden cursor-pointer"
+                        className="md:hidden  cursor-pointer"
                         onClick={() => setOpen(true)}
                         aria-label="Open Menu"
                     >

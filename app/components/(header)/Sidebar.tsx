@@ -12,15 +12,13 @@ interface SidebarProps {
 export default function Sidebar({ open, setOpen, navItems }: SidebarProps) {
   return (
     <div
-      className={`fixed inset-0 z-50 bg-black/50 transition-opacity md:hidden ${
-        open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-      }`}
+      className={`fixed inset-0 z-50 bg-black/50 transition-opacity md:hidden ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
     >
       {/* Actual Sidebar */}
       <div
-        className={`absolute top-0 left-0 h-full w-64 bg-(--dark-green) text-white p-5 transition-transform ${
-          open ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`absolute top-0 left-0 h-full w-64 bg-(--deep-green) text-white p-5 transition-transform ${open ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         <div className="flex items-center cursor-pointer justify-between mb-6">
           <span className="text-lg font-semibold">Menu</span>

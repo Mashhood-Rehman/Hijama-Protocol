@@ -34,9 +34,8 @@ export default function StickyProductBar() {
 
   return (
     <div
-      className={`fixed top-16 left-0 w-full z-40 transition-all duration-300 ${
-        visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
-      }`}
+      className={`hidden md:block fixed top-16 left-0 w-full z-40 transition-all duration-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
+        }`}
     >
       <div className="bg-white border-t border-b border-[#1b4a3a] px-4 py-4 shadow-lg">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6 text-black">

@@ -1,15 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&family=Noto+Nastaliq+Urdu:wght@400&display=swap');
 @import "tailwindcss";
+/* ===============================
+   BRAND COLOR SYSTEM
+   The Hijama Protocol
+   =============================== */
 
 :root {
-  --dark-green: #0A2F23;
-  --gold: #C7A86C;
-  --neon-green: #00FF66;
-  --black: #0C0C0C;
-  --sage: #3E6F50;
+  /* Primary */
+  --deep-green: #0A2F23;
+  --deep-green-dark: #0F3A2A;
+
+  --luxe-gold: #C7A86C;
+  --luxe-gold-soft: #D4B880;
+
+  --bio-neon: #00FF66;
+  --bio-neon-soft: #19E47A;
+
+  /* Secondary */
+  --charcoal-black: #0C0C0C;
+  --charcoal-black-soft: #111111;
+
+  --herbal-sage: #3E6F50;
+  --herbal-sage-soft: #497A5C;
+
+  --soft-glow-green: #46FF9E;
+  --soft-glow-green-soft: #66FFB6;
 }
- 
- /* buttns  */
+
+/* ===============================
+   BUTTON SYSTEM
+   =============================== */
+
 .btn {
   padding: 0.75rem 1.5rem;
   font-weight: 600;
@@ -17,39 +38,57 @@
   transition: all 0.25s ease;
   cursor: pointer;
   border: none;
+  letter-spacing: 0.02em;
 }
 
+/* Matte Gold – Primary CTA */
 .btn-brown {
-  background-color: var(--gold);
-  color: white ;
+  background-color: var(--luxe-gold);
+  color: var(--charcoal-black);
 }
 
 .btn-brown:hover {
-  background-color: #B49557;
-  color: black;
+  background-color: var(--luxe-gold-soft);
+  color: var(--charcoal-black);
 }
 
+/* Transparent Gold – Secondary CTA */
 .btn-transparent {
-  border: 2px solid var(--gold);
-  color: var(--gold); 
+  background-color: transparent;
+  border: 1.5px solid var(--luxe-gold);
+  color: var(--luxe-gold);
 }
 
 .btn-transparent:hover {
-  background-color: var(--gold);
-  color: #1a3a2e;                       
+  background-color: var(--luxe-gold);
+  color: var(--deep-green);
 }
 
+/* Deep Green – Authority / Trust */
 .btn-green {
-  background-color: var(--dark-green);
+  background-color: var(--deep-green);
   color: #ffffff;
 }
 
 .btn-green:hover {
-  background-color: #2d5a4a;
+  background-color: var(--deep-green-dark);
 }
 
+/* Bio-Neon Accent (Use Sparingly) */
+.btn-neon {
+  background-color: var(--bio-neon);
+  color: var(--charcoal-black);
+  box-shadow: 0 0 18px rgba(0, 255, 102, 0.35);
+}
 
-/* google  */
+.btn-neon:hover {
+  background-color: var(--bio-neon-soft);
+}
+
+/* ===============================
+   GOOGLE TRANSLATE (KEEP)
+   =============================== */
+
 .goog-te-gadget span {
   display: none !important;
 }
@@ -64,64 +103,66 @@
   box-shadow: none !important;
 }
 
- 
 #google_translate_element select {
   background: #ffffff;
   color: #000000;
-  border: none;
-  outline: none;
   border-radius: 8px;
   padding: 11px 6px;
-  border: 1px solid var(--light-gray);
+  border: 1px solid var(--herbal-sage);
+  outline: none;
 }
 
 .goog-te-gadget {
   font-size: 0 !important;
 }
 
-.goog-te-gadget span {
-  display: none !important;
-}
-
-
-/* font  */
-
-
+/* ===============================
+   TYPOGRAPHY SYSTEM
+   =============================== */
 
 html {
   scroll-behavior: smooth;
+  color: #ffffff;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
-/* HERO Titles */
+/* HERO */
 h1 {
-  font-size: 3.5rem; /* ~56px */
+  font-size: 3.5rem;
 }
 
-/* Section titles */
+/* Section Titles */
 h2 {
-  font-size: 2.5rem; /* ~40px */
+  font-size: 2.5rem;
 }
 
 h3 {
-  font-size: 1.5rem; /* ~32px */
+  font-size: 2rem;
 }
 
 h4 {
-  font-size: 1.5rem; /* ~24px */
+  font-size: 1.5rem;
 }
 
 h5 {
-  font-size: 1.25rem; /* ~20px */
+  font-size: 1.25rem;
 }
 
 h6 {
-  font-size: 1.1rem; /* ~17px */
+  font-size: 1.1rem;
 }
 
+/* Body & UI */
 p,
 span,
 li,
@@ -129,18 +170,24 @@ a {
   font-family: "Inter", sans-serif;
 }
 
-a, link {
+a {
   text-decoration: none;
-  transition: 0.25s ease;
+  transition: color 0.25s ease;
 }
 
+a:hover {
+  color: var(--soft-glow-green);
+}
 
+/* ===============================
+   URDU / SCRIPTURE SUPPORT
+   =============================== */
 
 .urdu {
   font-family: "Noto Nastaliq Urdu", serif !important;
   direction: rtl;
   text-align: right;
   font-size: 1.1rem;
-  line-height: 1.8;
+  line-height: 1.9;
+  color: var(--luxe-gold-soft);
 }
-
