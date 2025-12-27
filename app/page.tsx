@@ -6,6 +6,7 @@ import Hero from "./components/(homeComponents)/Hero";
 import ProductDeepDive from "./components/(homeComponents)/ProductDeepDive";
 import ProductHighlights from "./components/(homeComponents)/ProductHighlights";
 import StickyProductBar from "./components/(homeComponents)/StickyProductBar";
+import Methodology from "./components/(homeComponents)/Methodology";
 import StoreBundles from "./components/(homeComponents)/StoreBundles";
 import Testimonials from "./components/(homeComponents)/Testimonials";
 
@@ -19,9 +20,10 @@ export default function Home() {
         <ProductHighlights />
         <ProductDeepDive />
         <StoreBundles />
-        <EducationCommunity />
         <Testimonials />
+        <EducationCommunity />
         <AffiliateProgram />
+        <Methodology />
         <FinalConversion />
       </div>
     </>

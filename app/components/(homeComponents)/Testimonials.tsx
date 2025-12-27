@@ -81,12 +81,6 @@ export default function Testimonials() {
                         >
                             <ICONS.Quote className="w-10 h-10 text-(--luxe-gold) mb-4 shrink-0" />
 
-                            <div className="flex items-center gap-1 mb-4">
-                                {Array.from({ length: testimonial.rating }).map((_, i) => (
-                                    <ICONS.Star key={i} className="w-5 h-5 fill-(--luxe-gold) text-(--luxe-gold)" />
-                                ))}
-                            </div>
-
                             <p className="text-gray-700 mb-6 leading-relaxed grow">{testimonial.text}</p>
 
                             <div className="flex items-center gap-4 pt-4 border-t">

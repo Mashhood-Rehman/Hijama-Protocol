@@ -1,6 +1,11 @@
-import { Activity, Award, BookOpen, Brain, ChevronLeft, ChevronRight, Dna, Download, Droplet, ExternalLink, FileText, Headphones, Heart, Menu, Package, Quote, Send, Share2, Shield, ShoppingCart, Sparkle, Sparkles, Star, Target, TrendingUp, Truck, Users, X, Zap } from "lucide-react";
+import { Activity, Award, BookOpen, Brain, Check, ChevronDown, ChevronLeft, ChevronRight, Dna, Download, Droplet, ExternalLink, FileText, Headphones, Heart, Menu, Package, Play, Quote, Send, Share2, Shield, ShieldCheck, ShoppingCart, Sparkle, Sparkles, Star, Target, TrendingUp, Truck, Users, X, Zap, ArrowRight } from "lucide-react";
 
- const ICONS = {
+const ICONS = {
+    ChevronDown,
+    Play,
+    ShieldCheck,
+    Check,
+    ArrowRight,
     Menu,
     X,
     ShoppingCart,
@@ -32,5 +37,5 @@ import { Activity, Award, BookOpen, Brain, ChevronLeft, ChevronRight, Dna, Downl
     Truck
 
 
-}   
+}
 export default ICONS;

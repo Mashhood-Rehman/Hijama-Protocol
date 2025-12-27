@@ -1,14 +1,14 @@
 import ICONS from "../assets/Icons";
 
 type Pillar = {
-icon: any;
+  icon: any;
   headline: string;
   points: string[];
   benefit: string;
 };
 
 type TargetArea = {
-    icon: any;
+  icon: any;
   title: string;
   description: string;
   points: string[];
@@ -19,6 +19,20 @@ type ComparisonMetric = {
   standard: string;
   augmented: string;
   improvement: string;
+};
+
+type Video = {
+  id: number;
+  thumbnail: string;
+  title: string;
+  duration: string;
+  category: string;
+};
+
+type ConversionStep = {
+  icon: any;
+  title: string;
+  description: string;
 };
 
 
@@ -43,13 +57,23 @@ export const footerLinks = {
   ],
 };
 
-export const navItems = [
+export const mainNavItems = [
   { label: "Our Story", href: "/our-story" },
   { label: "RÜH-ARMOR™", href: "/ruh-armor" },
   { label: "NUR-ARMOR™", href: "/nur-armor" },
   { label: "Augmented NAC™", href: "/augmented-nac" },
+];
+
+export const moreNavItems = [
   { label: "Store", href: "/store" },
   { label: "Bundles", href: "/bundles" },
+  { label: "See Videos", href: "/videos" },
+  { label: "Access Studies", href: "/studies" },
+  { label: "Diet Plans", href: "/diet-plans" },
+  { label: "Reviews & Testimonials", href: "/reviews" },
+  { label: "Join Hijama Protocol Community Health Group", href: "/community" },
+  { label: "Become an Affiliate", href: "/affiliate" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 export const pillars: Pillar[] = [
@@ -181,7 +205,7 @@ export const testimonials = [
 export const bundles = [
   {
     id: 1,
-    name: "The Hijama Protocol",
+    name: "Detox Pack",
     description: "Complete detox system with liver cleanse preparation",
     products: ["RÜH-ARMOR™", "NUR-ARMOR™", "Augmented NAC™", "Detox Diet Plan"],
     price: "$279",
@@ -296,16 +320,124 @@ export const benefits = [
 ];
 
 export const trustElements = [
-    {
-        icon: ICONS.Shield,
-        text: "30-Day Money-Back Guarantee",
-    },
-    {
-        icon: ICONS.Truck,
-        text: "Free Shipping Over $150",
-    },
-    {
-        icon: ICONS.Award,
-        text: "Laboratory Verified & Doctor Approved",
-    },
+  {
+    icon: ICONS.Shield,
+    text: "30-Day Money-Back Guarantee",
+  },
+  {
+    icon: ICONS.Truck,
+    text: "Free Shipping Over $150",
+  },
+  {
+    icon: ICONS.Award,
+    text: "Laboratory Verified & Doctor Approved",
+  },
+];
+
+export const videos: Video[] = [
+  {
+    id: 1,
+    thumbnail: "https://images.unsplash.com/photo-1576091160550-217359f42f1c?q=80&w=2070&auto=format&fit=crop",
+    title: "Understanding Spike Protein Pathology",
+    duration: "12:45",
+    category: "Science"
+  },
+  {
+    id: 2,
+    thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop",
+    title: "Clinical Results: 90 Days Review",
+    duration: "08:20",
+    category: "Clinical"
+  },
+  {
+    id: 3,
+    thumbnail: "https://images.unsplash.com/photo-1579154235829-639796a9c7ec?q=80&w=2070&auto=format&fit=crop",
+    title: "The Molecular Science of Augmented NAC",
+    duration: "15:30",
+    category: "Research"
+  }
+];
+
+export const conversionSteps: ConversionStep[] = [
+  {
+    icon: ICONS.Shield,
+    title: "Step 1: Cellular Defense",
+    description: "Neutralize systemic threats and protect your DNA foundations."
+  },
+  {
+    icon: ICONS.Zap,
+    title: "Step 2: Bio-Optimization",
+    description: "Enhance mitochondrial energy and nutrient delivery efficiency."
+  },
+  {
+    icon: ICONS.Target,
+    title: "Step 3: Protocol Integration",
+    description: "Seamlessly integrate with your lifestyle for lasting results."
+  }
+];
+
+export const ruhArmorFaq = [
+  {
+    question: "Is RÜH-ARMOR™ safe for daily use?",
+    answer: "Yes. RÜH-ARMOR™ is formulated for daily foundational support to help maintain consistent detoxification, energy production, and nutrient absorption as part of a balanced lifestyle."
+  },
+  {
+    question: "Does RÜH-ARMOR™ support anti-aging?",
+    answer: "Yes. Through NAD support and antioxidant pathways, along with Vitamin C’s role in collagen production and cellular protection, RÜH-ARMOR™ supports anti-aging and youthful vitality."
+  },
+  {
+    question: "How long before I notice benefits?",
+    answer: "Some people report feeling improvements in clarity and energy within the first days or weeks. Deeper benefits related to detoxification, vitality, and skin appearance typically build over 2–4 weeks of consistent use."
+  },
+  {
+    question: "Is RÜH-ARMOR™ suitable for vegetarians?",
+    answer: "Yes. The formula contains no animal-derived ingredients."
+  },
+  {
+    question: "Does it contain common allergens?",
+    answer: "RÜH-ARMOR™ contains sunflower lecithin. It is free from soy, dairy, gluten, and artificial additives."
+  }
+];
+
+export const ruhArmorBenefits = [
+  "Clearer detoxification pathways",
+  "Support for heavy metal binding and elimination",
+  "Improved daily energy and stamina",
+  "Stronger immune resilience",
+  "Enhanced nutrient absorption and digestive comfort",
+  "Support for more youthful, radiant-looking skin",
+  "Enhanced mental clarity and cellular repair support"
+];
+
+export const ruhArmorPillars = [
+  {
+    title: "Detoxification Matrix",
+    description: "Zeolite is a naturally occurring mineral that acts as a molecular sieve, binding heavy metals and environmental toxins in the digestive tract. Liposomal Glutathione is the body’s master antioxidant, crucial for liver health and neutralizing free radicals. In its liposomal form, absorption and bioavailability are significantly enhanced.",
+    ingredients: "Zeolite + Liposomal Glutathione",
+    benefit: "Supports removal of harmful elements while reinforcing cellular protection and liver detoxification pathways."
+  },
+  {
+    title: "Methylation & NAD Energy Support",
+    description: "RÜH-ARMOR™ includes Betaine, Nicotinamide Riboside (NR), Methylfolate, and Vitamin B12 to support methylation, DNA synthesis, cognitive function, and cellular repair. NR is a precursor to NAD, a molecule central to mitochondrial function, cellular energy production, and longevity-related pathways.",
+    ingredients: "Betaine, NR, Methylfolate, Vitamin B12",
+    benefit: "Supports DNA synthesis, cognitive function, and cellular repair."
+  },
+  {
+    title: "Immune & Antioxidant Strength",
+    description: "Vitamin C is a potent antioxidant that supports immune defense, collagen production, and resilience against oxidative stress. Zinc is essential for immune cell development, enzymatic function, and overall physiological stability. Together, Vitamin C and Zinc form a strong foundation for daily immune and antioxidant support.",
+    ingredients: "Vitamin C + Zinc",
+    benefit: "Strong foundation for daily immune and antioxidant support."
+  },
+  {
+    title: "Absorption & Delivery Enhancement",
+    description: "Acacia Fiber is a gentle prebiotic fiber that supports digestive comfort, microbiome balance, and smoother detoxification. Sunflower Lecithin enhances emulsification and nutrient delivery, supporting the efficient absorption of key ingredients throughout the formula.",
+    ingredients: "Acacia Fiber + Sunflower Lecithin",
+    benefit: "Supports microbiome balance and efficient nutrient absorption."
+  },
+  {
+    title: "Youthful Vitality & Anti-Aging Support",
+    description: "The synergy between NAD-supporting Nicotinamide Riboside and collagen-boosting Vitamin C promotes mitochondrial vitality, cellular repair, and visible skin radiance. This combination supports anti-aging pathways and overall youthful vitality.",
+    ingredients: "NR + Vitamin C Synergy",
+    benefit: "Promotes mitochondrial vitality and visible skin radiance."
+  }
 ];

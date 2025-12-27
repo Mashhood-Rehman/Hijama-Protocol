@@ -62,9 +62,13 @@ export default function Hero() {
               <h1 className="text-5xl md:text-7xl leading-tight">
                 Purification Engineered.
               </h1>
-              <p className="text-xl text-(--luxe-gold) font-medium">
-                Tradition Elevated.
-              </p>
+              <div className="flex items-center gap-4">
+
+                <p className="text-xl text-(--luxe-gold) font-medium">
+                  Tradition Elevated.
+                </p>
+                <button className="btn btn-transparent">Download Studies</button>
+              </div>
             </div>
 
             <div className="pt-4 border-t border-white/10">
