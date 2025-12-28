@@ -58,20 +58,22 @@ export const footerLinks = {
 };
 
 export const mainNavItems = [
-  { label: "Our Story", href: "/our-story" },
+  { label: "About Us", href: "/about" },
   { label: "RÜH-ARMOR™", href: "/ruh-armor" },
   { label: "NUR-ARMOR™", href: "/nur-armor" },
   { label: "Augmented NAC™", href: "/augmented-nac" },
+  { label: "Access Studies", href: "/studies" },
 ];
 
 export const moreNavItems = [
   { label: "Store", href: "/store" },
   { label: "Bundles", href: "/bundles" },
   { label: "See Videos", href: "/videos" },
-  { label: "Access Studies", href: "/studies" },
-  { label: "Diet Plans", href: "/diet-plans" },
-  { label: "Reviews & Testimonials", href: "/reviews" },
-  { label: "Join Hijama Protocol Community Health Group", href: "/community" },
+  { label: "Parasite Cleanse", href: "/parasite-cleanse" },
+  { label: "Spike Cleanse", href: "/spike-cleanse" },
+  { label: "Hormone Balance", href: "/hormone-balance" },
+  { label: "Quran Verses", href: "/quran-verses" },
+  { label: "The Healing of Noor", href: "/healing-noor" },
   { label: "Become an Affiliate", href: "/affiliate" },
   { label: "Contact Us", href: "/contact" },
 ];
@@ -439,5 +441,34 @@ export const ruhArmorPillars = [
     description: "The synergy between NAD-supporting Nicotinamide Riboside and collagen-boosting Vitamin C promotes mitochondrial vitality, cellular repair, and visible skin radiance. This combination supports anti-aging pathways and overall youthful vitality.",
     ingredients: "NR + Vitamin C Synergy",
     benefit: "Promotes mitochondrial vitality and visible skin radiance."
+  }
+];
+
+export const aboutContent = {
+  heading: "ABOUT US",
+  subheading: "HIJAMA PROTOCOL",
+  philosophy: "At Hijama Protocol, we believe in the profound wisdom of nature refined by the precision of science. Our philosophy centers on drawing out impurities, purging toxins, and restoring balance to the immune system using natural herbs and holistic methods.",
+  mission: "We are committed to providing trustworthy information and high-potency formulations to support individuals affected by modern environmental challenges, including synthetic spike proteins and heavy metal toxicity.",
+  image: "/assets/about-doctor.png"
+};
+
+export const studiesData = [
+  {
+    id: 1,
+    speaker: "Dr. Byram Bridle",
+    role: "Viral Immunologist, University of Guelph",
+    topic: "Synthetic Spike Protein Distribution",
+    findings: "Research indicates the distribution of synthetic spike proteins in critical organs including the Ovaries, Heart, Brain, and Liver.",
+    warning: "WE MADE A MISTAKE: The spike protein itself is toxic and a pathogenic protein.",
+    image: "/assets/about-doctor.png"
+  },
+  {
+    id: 2,
+    speaker: "Dr. Peter McCullough",
+    role: "Cardiologist & Researcher",
+    topic: "Clinical Risks & Cardiovascular Protection",
+    findings: "Significant risks identified including Myocarditis, systemic inflammation, and blood clots related to spike protein persistence.",
+    warning: "Urgent need for targeted detoxification and cardiovascular support protocols.",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop"
   }
 ];
