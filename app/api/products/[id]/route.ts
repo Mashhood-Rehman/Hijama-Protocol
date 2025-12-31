@@ -1,90 +1,42 @@
-import { NextRequest, NextResponse } from 'next/server';
-import dbConnect from '@/lib/db';
-import Product from '@/models/Product';
-import { uploadToCloudinary } from '@/lib/cloudinary';
+import { NextResponse } from "next/server";
+import mongoose from "mongoose";
+import Product from "@/models/Product";
 
-export async function GET(
-    request: NextRequest,
-    { params }: { params: { id: string } }
-) {
-    await dbConnect();
+async function connectDB() {
+    if (mongoose.connection.readyState >= 1) return;
+    return mongoose.connect(process.env.MONGODB_URI!);
+}
+
+export async function GET(req: Request, { params }: { params: { id: string } }) {
     try {
+        await connectDB();
         const product = await Product.findById(params.id);
-        if (!product) {
-            return NextResponse.json({ success: false, error: 'Product not found' }, { status: 404 });
-        }
-        return NextResponse.json({ success: true, data: product });
+        if (!product) return NextResponse.json({ error: "Product not found" }, { status: 404 });
+        return NextResponse.json(product);
     } catch (error: any) {
-        return NextResponse.json({ success: false, error: error.message }, { status: 400 });
+        return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }
 
-export async function PATCH(
-    request: NextRequest,
-    { params }: { params: { id: string } }
-) {
-    await dbConnect();
+export async function PUT(req: Request, { params }: { params: { id: string } }) {
     try {
-        const formData = await request.formData();
-        const updateData: any = {};
-
-        const fields = ['name', 'description', 'price', 'category'];
-        fields.forEach((field) => {
-            const value = formData.get(field);
-            if (value) {
-                if (field === 'price') {
-                    updateData[field] = parseFloat(value as string);
-                } else {
-                    updateData[field] = value;
-                }
-            }
-        });
-
-        const imageFiles = formData.getAll('images') as File[];
-        if (imageFiles.length > 0 && imageFiles[0].size > 0) {
-            const imageUrls: string[] = [];
-            for (const file of imageFiles) {
-                const buffer = Buffer.from(await file.arrayBuffer());
-                const url = await uploadToCloudinary(buffer, 'products/images', 'image');
-                imageUrls.push(url);
-            }
-            updateData.images = imageUrls;
-        }
-
-        const pdfFile = formData.get('pdf') as File;
-        if (pdfFile && pdfFile.size > 0) {
-            const buffer = Buffer.from(await pdfFile.arrayBuffer());
-            const url = await uploadToCloudinary(buffer, 'products/docs', 'auto');
-            updateData.pdf = url;
-        }
-
-        const product = await Product.findByIdAndUpdate(params.id, updateData, {
-            new: true,
-            runValidators: true,
-        });
-
-        if (!product) {
-            return NextResponse.json({ success: false, error: 'Product not found' }, { status: 404 });
-        }
-
-        return NextResponse.json({ success: true, data: product });
+        await connectDB();
+        const body = await req.json();
+        const product = await Product.findByIdAndUpdate(params.id, body, { new: true });
+        if (!product) return NextResponse.json({ error: "Product not found" }, { status: 404 });
+        return NextResponse.json(product);
     } catch (error: any) {
-        return NextResponse.json({ success: false, error: error.message }, { status: 400 });
+        return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }
 
-export async function DELETE(
-    request: NextRequest,
-    { params }: { params: { id: string } }
-) {
-    await dbConnect();
+export async function DELETE(req: Request, { params }: { params: { id: string } }) {
     try {
-        const deletedProduct = await Product.findByIdAndDelete(params.id);
-        if (!deletedProduct) {
-            return NextResponse.json({ success: false, error: 'Product not found' }, { status: 404 });
-        }
-        return NextResponse.json({ success: true, data: {} });
+        await connectDB();
+        const product = await Product.findByIdAndDelete(params.id);
+        if (!product) return NextResponse.json({ error: "Product not found" }, { status: 404 });
+        return NextResponse.json({ message: "Product deleted successfully" });
     } catch (error: any) {
-        return NextResponse.json({ success: false, error: error.message }, { status: 400 });
+        return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }

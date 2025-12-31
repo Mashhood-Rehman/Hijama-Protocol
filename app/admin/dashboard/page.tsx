@@ -1,18 +1,57 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ICONS from "../../assets/Icons";
 import NextLink from "next/link";
-
-const MOCK_PRODUCTS = [
-    { id: 1, name: "Premium Hijama Kit", category: "Kits", price: 49.99, stock: 124, status: "Active" },
-    { id: 2, name: "Luxury Cupping Oil", category: "Accessories", price: 29.99, stock: 45, status: "Active" },
-    { id: 3, name: "Pro Massage Table", category: "Equipment", price: 199.99, stock: 12, status: "Draft" },
-    { id: 4, name: "Herbology Guide", category: "Education", price: 19.99, stock: 500, status: "Active" },
-];
+import { toast } from "react-hot-toast";
 
 export default function AdminProductsPage() {
     const [searchTerm, setSearchTerm] = useState("");
+    const [products, setProducts] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    const fetchProducts = async () => {
+        try {
+            const response = await fetch("/api/products");
+            const data = await response.json();
+            setProducts(data);
+        } catch (error) {
+            console.error("Fetch error:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleDelete = async (id: string) => {
+        if (!window.confirm("Are you sure you want to delete this product?")) return;
+
+        const loadingToast = toast.loading("Deleting product...");
+
+        try {
+            const response = await fetch(`/api/products/${id}`, {
+                method: "DELETE",
+            });
+            if (response.ok) {
+                toast.success("Product deleted successfully", { id: loadingToast });
+                fetchProducts();
+            } else {
+                const errorData = await response.json();
+                toast.error(errorData.error || "Failed to delete product", { id: loadingToast });
+            }
+        } catch (error) {
+            console.error("Delete error:", error);
+            toast.error("An error occurred while deleting the product", { id: loadingToast });
+        }
+    };
+
+    useEffect(() => {
+        fetchProducts();
+    }, []);
+
+    const filteredProducts = (Array.isArray(products) ? products : []).filter((p: any) =>
+        p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.category.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
         <div className="space-y-6">
@@ -59,52 +98,72 @@ export default function AdminProductsPage() {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-white/10">
-                            {MOCK_PRODUCTS.map((product) => (
-                                <tr key={product.id} className="hover:bg-white/5 transition-colors group">
-                                    <td className="px-6 py-4">
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-(--deep-green) to-(--deep-green-dark) border border-white/10 flex items-center justify-center text-(--luxe-gold)">
-                                                <ICONS.Package size={20} />
-                                            </div>
-                                            <div>
-                                                <div className="font-medium text-white">{product.name}</div>
-                                                <div className="text-xs text-gray-500">#{product.id.toString().padStart(4, '0')}</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td className="px-6 py-4 text-sm text-gray-300">{product.category}</td>
-                                    <td className="px-6 py-4 text-sm font-medium text-white">${product.price.toFixed(2)}</td>
-                                    <td className="px-6 py-4">
-                                        <div className="flex flex-col gap-1">
-                                            <span className="text-sm text-white">{product.stock} units</span>
-                                            <div className="w-24 h-1.5 bg-white/10 rounded-full overflow-hidden">
-                                                <div
-                                                    className="h-full bg-(--luxe-gold)"
-                                                    style={{ width: `${Math.min((product.stock / 500) * 100, 100)}%` }}
-                                                ></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${product.status === "Active"
-                                                ? "bg-green-500/10 text-green-400 border border-green-500/20"
-                                                : "bg-yellow-500/10 text-yellow-400 border border-yellow-500/20"
-                                            }`}>
-                                            {product.status}
-                                        </span>
-                                    </td>
-                                    <td className="px-6 py-4 text-right">
-                                        <div className="flex items-center justify-end gap-2">
-                                            <button className="p-2 hover:bg-white/10 rounded-lg text-gray-400 hover:text-white transition-colors">
-                                                <ICONS.Edit size={16} />
-                                            </button>
-                                            <button className="p-2 hover:bg-red-400/10 rounded-lg text-gray-400 hover:text-red-400 transition-colors">
-                                                <ICONS.Trash size={16} />
-                                            </button>
-                                        </div>
+                            {loading ? (
+                                <tr>
+                                    <td colSpan={6} className="px-6 py-10 text-center text-gray-500">
+                                        Loading products...
                                     </td>
                                 </tr>
-                            ))}
+                            ) : filteredProducts.length === 0 ? (
+                                <tr>
+                                    <td colSpan={6} className="px-6 py-10 text-center text-gray-500">
+                                        No products found.
+                                    </td>
+                                </tr>
+                            ) : (
+                                filteredProducts.map((product) => (
+                                    <tr key={product._id} className="hover:bg-white/5 transition-colors group">
+                                        <td className="px-6 py-4">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-(--deep-green) to-(--deep-green-dark) border border-white/10 flex items-center justify-center text-(--luxe-gold)">
+                                                    <ICONS.Package size={20} />
+                                                </div>
+                                                <div>
+                                                    <div className="font-medium text-white">{product.name}</div>
+                                                    <div className="text-xs text-gray-500">#{product._id.toString().slice(-6)}</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td className="px-6 py-4 text-sm text-gray-300">{product.category}</td>
+                                        <td className="px-6 py-4 text-sm font-medium text-white">${product.price.toFixed(2)}</td>
+                                        <td className="px-6 py-4">
+                                            <div className="flex flex-col gap-1">
+                                                <span className="text-sm text-white">{product.stock || 0} units</span>
+                                                <div className="w-24 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                                                    <div
+                                                        className="h-full bg-(--luxe-gold)"
+                                                        style={{ width: `${Math.min(((product.stock || 0) / 500) * 100, 100)}%` }}
+                                                    ></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${product.status === "Active"
+                                                ? "bg-green-500/10 text-green-400 border border-green-500/20"
+                                                : "bg-yellow-500/10 text-yellow-400 border border-yellow-500/20"
+                                                }`}>
+                                                {product.status || 'Draft'}
+                                            </span>
+                                        </td>
+                                        <td className="px-6 py-4 text-right">
+                                            <div className="flex items-center justify-end gap-2">
+                                                <NextLink
+                                                    href={`/admin/dashboard/products/add?id=${product._id}`}
+                                                    className="p-2 hover:bg-white/10 rounded-lg text-gray-400 hover:text-white transition-colors"
+                                                >
+                                                    <ICONS.Edit size={16} />
+                                                </NextLink>
+                                                <button
+                                                    onClick={() => handleDelete(product._id)}
+                                                    className="p-2 hover:bg-red-400/10 rounded-lg text-gray-400 hover:text-red-400 transition-colors"
+                                                >
+                                                    <ICONS.Trash size={16} />
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))
+                            )}
                         </tbody>
                     </table>
                 </div>

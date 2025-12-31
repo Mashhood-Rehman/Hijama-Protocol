@@ -541,22 +541,5 @@ export const products: Product[] = [
       "Respiratory Health Support"
     ]
   },
-  {
-    id: "detox-pack",
-    name: "Detox Pack Bundle",
-    description: "Complete detox system with liver cleanse preparation and protocol guide.",
-    price: "$279.00",
-    images: [
-      "https://images.unsplash.com/photo-1611073113567-282463b27242?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2070&auto=format&fit=crop"
-    ],
-    category: "Bundles",
-    details: [
-      "RÜH-ARMOR™ Included",
-      "NUR-ARMOR™ Included",
-      "Augmented NAC™ Included",
-      "7-Day Detox Blueprint",
-      "Community Access"
-    ]
-  }
+
 ];

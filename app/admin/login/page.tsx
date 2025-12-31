@@ -7,10 +7,27 @@ import ICONS from "../../assets/Icons";
 export default function AdminLoginPage() {
     const [showPassword, setShowPassword] = useState(false);
 
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Redirect to dashboard (simulated)
-        window.location.href = "/admin/dashboard";
+        setIsLoading(true);
+        setError("");
+
+        // Simulated login delay
+        setTimeout(() => {
+            if (email === "admin@test.com" && password === "password123") {
+                // Set cookie for authentication
+                document.cookie = "admin_session=authenticated; path=/; max-age=86400"; // 24 hours
+                window.location.href = "/admin/dashboard";
+            } else {
+                setError("Invalid email or password. Please try again.");
+                setIsLoading(false);
+            }
+        }, 1000);
     };
 
     return (
@@ -33,6 +50,13 @@ export default function AdminLoginPage() {
                 <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-2xl shadow-2xl overflow-hidden relative group">
                     <div className="absolute inset-0 bg-gradient-to-br from-(--luxe-gold)/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
+                    {error && (
+                        <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm flex items-center gap-2">
+                            <ICONS.X size={16} />
+                            {error}
+                        </div>
+                    )}
+
                     <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
                         <div>
                             <label className="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
@@ -42,9 +66,10 @@ export default function AdminLoginPage() {
                                 </span>
                                 <input
                                     type="email"
-                                    defaultValue="admin@hijamaprotocol.com"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                     className="w-full bg-white/5 border border-white/10 rounded-lg py-3 pl-10 pr-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-(--luxe-gold) focus:border-transparent transition-all"
-                                    placeholder="name@company.com"
+                                    placeholder="admin@test.com"
                                     required
                                 />
                             </div>
@@ -58,7 +83,8 @@ export default function AdminLoginPage() {
                                 </span>
                                 <input
                                     type={showPassword ? "text" : "password"}
-                                    defaultValue="password123"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
                                     className="w-full bg-white/5 border border-white/10 rounded-lg py-3 pl-10 pr-12 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-(--luxe-gold) focus:border-transparent transition-all"
                                     placeholder="••••••••"
                                     required
@@ -83,10 +109,11 @@ export default function AdminLoginPage() {
 
                         <button
                             type="submit"
-                            className="w-full btn btn-brown flex items-center justify-center gap-2 group py-4 h-auto"
+                            disabled={isLoading}
+                            className={`w-full btn btn-brown flex items-center justify-center gap-2 group py-4 h-auto ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
                         >
-                            <span>Sign In</span>
-                            <ICONS.ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                            <span>{isLoading ? 'Checking...' : 'Sign In'}</span>
+                            {!isLoading && <ICONS.ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />}
                         </button>
                     </form>
                 </div>

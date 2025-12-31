@@ -21,6 +21,11 @@ export default function AdminDashboardLayout({
         { label: "Analytics", href: "#", icon: ICONS.TrendingUp },
     ];
 
+    const handleLogout = () => {
+        document.cookie = "admin_session=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+        window.location.href = "/admin/login";
+    };
+
     return (
         <div className="flex h-screen bg-[#051510] text-gray-200 overflow-hidden">
             {/* Sidebar */}
@@ -51,8 +56,8 @@ export default function AdminDashboardLayout({
                                 key={item.label}
                                 href={item.href}
                                 className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${isActive
-                                        ? "bg-(--luxe-gold) text-(--charcoal-black) font-semibold"
-                                        : "hover:bg-white/5 text-gray-400 hover:text-white"
+                                    ? "bg-(--luxe-gold) text-(--charcoal-black) font-semibold"
+                                    : "hover:bg-white/5 text-gray-400 hover:text-white"
                                     }`}
                             >
                                 <Icon size={20} />
@@ -63,7 +68,10 @@ export default function AdminDashboardLayout({
                 </nav>
 
                 <div className="p-4 border-t border-white/10 space-y-2">
-                    <button className="w-full flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-red-400/10 rounded-xl transition-all">
+                    <button
+                        onClick={handleLogout}
+                        className="w-full flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-red-400/10 rounded-xl transition-all cursor-pointer"
+                    >
                         <ICONS.LogOut size={20} />
                         {sidebarOpen && <span>Logout</span>}
                     </button>

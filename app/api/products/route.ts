@@ -1,59 +1,29 @@
-import { NextRequest, NextResponse } from 'next/server';
-import dbConnect from '@/lib/db';
-import Product from '@/models/Product';
-import { uploadToCloudinary } from '@/lib/cloudinary';
+import { NextResponse } from "next/server";
+import mongoose from "mongoose";
+import Product from "@/models/Product";
+
+async function connectDB() {
+    if (mongoose.connection.readyState >= 1) return;
+    return mongoose.connect(process.env.MONGODB_URI!);
+}
 
 export async function GET() {
-    await dbConnect();
     try {
-        const products = await Product.find({}).sort({ createdAt: -1 });
-        return NextResponse.json({ success: true, data: products });
+        await connectDB();
+        const products = await Product.find().sort({ createdAt: -1 });
+        return NextResponse.json(products);
     } catch (error: any) {
-        return NextResponse.json({ success: false, error: error.message }, { status: 400 });
+        return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }
 
-export async function POST(request: NextRequest) {
-    await dbConnect();
+export async function POST(req: Request) {
     try {
-        const formData = await request.formData();
-        const name = formData.get('name') as string;
-        const description = formData.get('description') as string;
-        const price = formData.get('price') as string;
-        const category = formData.get('category') as string;
-        const imageFiles = formData.getAll('images') as File[];
-        const pdfFile = formData.get('pdf') as File;
-
-        if (!name || !price || !category) {
-            return NextResponse.json({ success: false, error: 'Missing required fields' }, { status: 400 });
-        }
-
-        const imageUrls: string[] = [];
-        for (const file of imageFiles) {
-            const buffer = Buffer.from(await file.arrayBuffer());
-            const url = await uploadToCloudinary(buffer, 'products/images', 'image');
-            imageUrls.push(url);
-        }
-
-        let pdfUrl = '';
-        if (pdfFile && pdfFile.size > 0) {
-            const buffer = Buffer.from(await pdfFile.arrayBuffer());
-            // PDF might need resource_type: 'raw' or 'auto'
-            pdfUrl = await uploadToCloudinary(buffer, 'products/docs', 'auto');
-        }
-
-        const product = await Product.create({
-            name,
-            description,
-            price: parseFloat(price),
-            category,
-            images: imageUrls,
-            pdf: pdfUrl,
-        });
-
-        return NextResponse.json({ success: true, data: product }, { status: 201 });
+        await connectDB();
+        const body = await req.json();
+        const product = await Product.create(body);
+        return NextResponse.json(product, { status: 201 });
     } catch (error: any) {
-        console.error('Error creating product:', error);
-        return NextResponse.json({ success: false, error: error.message }, { status: 400 });
+        return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }
