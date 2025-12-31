@@ -35,6 +35,16 @@ type ConversionStep = {
   description: string;
 };
 
+export type Product = {
+  id: string;
+  name: string;
+  description: string;
+  price: string;
+  images: string[];
+  category: string;
+  details: string[];
+};
+
 
 
 export const footerLinks = {
@@ -66,7 +76,7 @@ export const mainNavItems = [
 ];
 
 export const moreNavItems = [
-  { label: "Store", href: "/store" },
+  { label: "Store", href: "/#store" },
   { label: "Bundles", href: "/bundles" },
   { label: "See Videos", href: "/videos" },
   { label: "Parasite Cleanse", href: "/parasite-cleanse" },
@@ -470,5 +480,83 @@ export const studiesData = [
     findings: "Significant risks identified including Myocarditis, systemic inflammation, and blood clots related to spike protein persistence.",
     warning: "Urgent need for targeted detoxification and cardiovascular support protocols.",
     image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop"
+  }
+];
+
+export const products: Product[] = [
+  {
+    id: "ruh-armor",
+    name: "RÜH-ARMOR™",
+    description: "Multi-pillar detox system combining heavy metal binding, NAD support, and antioxidant synergy.",
+    price: "$99.00",
+    images: [
+      "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1547489432-cf93fa6c71ee?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?q=80&w=2070&auto=format&fit=crop"
+    ],
+    category: "Cellular Health",
+    details: [
+      "Heavy Metal Binding (Zeolite Technology)",
+      "NAD+ Support (Nicotinamide Riboside)",
+      "Master Antioxidant (Liposomal Glutathione)",
+      "Immune Resilience (Vitamin C + Zinc)",
+      "Enhanced Nutrient Delivery"
+    ]
+  },
+  {
+    id: "nur-armor",
+    name: "NUR-ARMOR™",
+    description: "Neurological support with advanced antioxidant delivery and Dr. Delgado's endorsed protocol.",
+    price: "$119.00",
+    images: [
+      "https://images.unsplash.com/photo-1550573104-d02bc3a3fb95?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1471864190281-ad5fe9ac770b?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1587854692152-cbe660dbbb88?q=80&w=2070&auto=format&fit=crop"
+    ],
+    category: "Neurological Support",
+    details: [
+      "Blood-Brain Barrier Penetration",
+      "Cardiac Tissue Protection",
+      "Mitochondrial Health Support",
+      "Advanced Antioxidant Delivery",
+      "Dr. Delgado Endorsed Protocol"
+    ]
+  },
+  {
+    id: "augmented-nac",
+    name: "Augmented NAC™",
+    description: "Quantum-enhanced NAC providing 8x–40x better spike protein denaturation and oxidative defense.",
+    price: "$149.00",
+    images: [
+      "https://images.unsplash.com/photo-1585435557343-3b092031a831?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1584017911766-d451b3d0e86f?q=80&w=2070&auto=format&fit=crop"
+    ],
+    category: "Oxidative Defense",
+    details: [
+      "8x-40x Enhanced Bioavailability",
+      "Spike Protein Denaturation",
+      "Quantum-Enhanced Technology",
+      "Systemic Oxidative Stress Reduction",
+      "Respiratory Health Support"
+    ]
+  },
+  {
+    id: "detox-pack",
+    name: "Detox Pack Bundle",
+    description: "Complete detox system with liver cleanse preparation and protocol guide.",
+    price: "$279.00",
+    images: [
+      "https://images.unsplash.com/photo-1611073113567-282463b27242?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2070&auto=format&fit=crop"
+    ],
+    category: "Bundles",
+    details: [
+      "RÜH-ARMOR™ Included",
+      "NUR-ARMOR™ Included",
+      "Augmented NAC™ Included",
+      "7-Day Detox Blueprint",
+      "Community Access"
+    ]
   }
 ];
