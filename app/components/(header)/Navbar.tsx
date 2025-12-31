@@ -142,7 +142,7 @@ export default function Navbar() {
                         {/* Admin Login Button */}
                         <Link
                             href="/admin/login"
-                            className="flex items-center gap-2 px-4 py-2 border border-(--luxe-gold) text-(--luxe-gold) rounded-full hover:bg-(--luxe-gold) hover:text-white transition-all text-sm font-medium"
+                            className="flex items-center gap-2 px-4 py-2 border border-(--luxe-gold) text-(--luxe-gold) rounded-full hover:bg-(--luxe-gold) hover:text-white! transition-all text-sm font-medium"
                         >
                             <ICONS.LogIn size={16} />
                             <span>Admin</span>
