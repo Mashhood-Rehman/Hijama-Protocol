@@ -3,14 +3,12 @@
 import React from 'react';
 import Image from 'next/image';
 import Disclaimer from '../components/(common)/Disclaimer';
-import StickyProductBar from '../components/(homeComponents)/StickyProductBar';
 import FinalConversion from '../components/(homeComponents)/FinalConversion';
 import RuhCtaSection from '../components/(ruhArmorComponents)/RuhCtaSection';
 
 export default function AugmentedNacPage() {
     return (
         <main className="min-h-screen bg-white">
-            <StickyProductBar />
 
             {/* Hero Section */}
             <section className="relative min-h-[90vh] flex items-center bg-blue-950 text-white pt-32 pb-24 overflow-hidden">

@@ -8,13 +8,11 @@ import RuhSocialProof from "../components/(ruhArmorComponents)/RuhSocialProof";
 import RuhDeepDive from "../components/(ruhArmorComponents)/RuhDeepDive";
 import RuhFaq from "../components/(ruhArmorComponents)/RuhFaq";
 import RuhCtaSection from "../components/(ruhArmorComponents)/RuhCtaSection";
-import StickyProductBar from "../components/(homeComponents)/StickyProductBar";
 
 export default function RuhArmorPage() {
     return (
         <main className="min-h-screen bg-white">
             {/* Sticky Bar for Quick Navigation */}
-            <StickyProductBar />
 
             {/* Hero Section */}
             <RuhHero />

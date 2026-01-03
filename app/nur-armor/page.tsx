@@ -3,7 +3,6 @@
 import React from 'react';
 import Image from 'next/image';
 import Disclaimer from '../components/(common)/Disclaimer';
-import StickyProductBar from '../components/(homeComponents)/StickyProductBar';
 import FinalConversion from '../components/(homeComponents)/FinalConversion';
 import RuhCtaSection from '../components/(ruhArmorComponents)/RuhCtaSection';
 import ElixirGrapheneGuard from '../components/(nurArmorComponents)/ElixirGrapheneGuard';
@@ -11,7 +10,6 @@ import ElixirGrapheneGuard from '../components/(nurArmorComponents)/ElixirGraphe
 export default function NurArmorPage() {
     return (
         <main className="min-h-screen bg-white">
-            <StickyProductBar />
 
             {/* Hero Section */}
             <section className="relative min-h-[90vh] flex items-center bg-gray-950 text-white pt-32 pb-24 overflow-hidden">
