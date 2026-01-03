@@ -57,7 +57,7 @@ export default function Hero() {
         <div className="relative z-10 pt-12  flex flex-col md:flex-row items-center justify-between grow mt-12 mb-12">
 
           {/* LEFT SIDE: HEADLINE (Static/Commented as requested) */}
-          <div className="max-w-md text-left space-y-6">
+          <div className="max-w-lg w-full text-left space-y-6">
             <div className="space-y-4">
               <h1 className="text-5xl md:text-7xl leading-tight">
                 Purification Engineered.

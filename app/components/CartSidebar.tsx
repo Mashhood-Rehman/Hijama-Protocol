@@ -3,6 +3,7 @@ import { RootState } from "@/lib/store";
 import { X, Minus, Plus, ShoppingCart, Trash2 } from "lucide-react";
 import { setCartOpen, updateQuantity, removeFromCart } from "@/lib/features/cart/cartSlice";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function CartSidebar() {
   const dispatch = useDispatch();
@@ -147,12 +148,13 @@ export default function CartSidebar() {
             </div>
           </div>
 
-          <button
-            disabled={items.length === 0}
-            className="w-full py-4 bg-black text-white rounded-2xl font-bold hover:bg-gray-800 transition-all shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 uppercase tracking-widest text-sm"
+          <Link
+            href="/checkout"
+            onClick={() => dispatch(setCartOpen(false))}
+            className={`w-full py-4 bg-black text-white rounded-2xl font-bold hover:bg-gray-800 transition-all shadow-2xl flex items-center justify-center gap-3 uppercase tracking-widest text-sm ${items.length === 0 ? 'pointer-events-none opacity-50' : ''}`}
           >
             Checkout Protocol
-          </button>
+          </Link>
 
           <p className="text-center text-[10px] text-gray-400 mt-4 uppercase tracking-tighter">
             Secure SSL Encrypted Checkout

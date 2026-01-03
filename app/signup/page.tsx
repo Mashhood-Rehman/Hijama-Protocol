@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import ICONS from "../assets/Icons";
+import { useRegisterMutation, useLoginMutation } from "@/lib/features/auth/authApi";
 
 export default function SignupPage() {
     const [email, setEmail] = useState("");
@@ -11,7 +12,11 @@ export default function SignupPage() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [error, setError] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
+
+    const [register, { isLoading: isRegistering }] = useRegisterMutation();
+    const [login, { isLoading: isLoggingIn }] = useLoginMutation();
+
+    const isLoading = isRegistering || isLoggingIn;
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -22,37 +27,27 @@ export default function SignupPage() {
             return;
         }
 
-        setIsLoading(true);
+        console.log("Attempting registration for:", email);
 
         try {
-            const response = await fetch("/api/auth/register", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password }),
-            });
+            // 1. Register
+            const regResult = await register({ email, password }).unwrap();
+            console.log("Registration successful:", regResult);
 
-            const data = await response.json();
+            // 2. Automatically Login
+            console.log("Attempting automatic login...");
+            const loginResult = await login({ email, password }).unwrap();
+            console.log("Automatic login successful:", loginResult);
 
-            if (response.ok) {
-                // Successful registration, now login
-                const loginResponse = await fetch("/api/auth/login", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email, password }),
-                });
-
-                if (loginResponse.ok) {
-                    window.location.href = "/";
-                } else {
-                    window.location.href = "/login";
-                }
+            window.location.href = "/";
+        } catch (err: any) {
+            console.error("Signup/Login Error details:", err);
+            if (err.data && err.data.error) {
+                console.log("Server provided error message:", err.data.error);
+                setError(err.data.error);
             } else {
-                setError(data.error || "Registration failed");
-                setIsLoading(false);
+                setError("An error occurred. Please check console for details.");
             }
-        } catch (err) {
-            setError("An error occurred. Please try again.");
-            setIsLoading(false);
         }
     };
 
@@ -75,7 +70,7 @@ export default function SignupPage() {
                     </div>
 
                     {error && (
-                        <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-sm flex items-center gap-2 relative z-10">
+                        <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-100 text-sm flex items-center gap-2 relative z-10">
                             <ICONS.X size={16} />
                             {error}
                         </div>
@@ -152,7 +147,7 @@ export default function SignupPage() {
                             disabled={isLoading}
                             className={`w-full bg-linear-to-r from-(--luxe-gold) to-[#A67C37] text-(--charcoal-black) py-3 rounded-xl font-bold text-md hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(197,160,89,0.3)] active:scale-[0.98] transition-all disabled:opacity-50 disabled:scale-100 disabled:hover:scale-100 flex items-center justify-center gap-2 group`}
                         >
-                            <span>{isLoading ? "Creating Account..." : "Sign Up"}</span>
+                            <span>{isRegistering ? "Creating Account..." : isLoggingIn ? "Authenticating..." : "Sign Up"}</span>
                             {!isLoading && <ICONS.ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />}
                         </button>
                     </form>

@@ -21,10 +21,10 @@ export default function LayoutClient({
                     const res = await fetch("/api/auth/me");
                     const data = await res.json();
                     if (!data.user || data.user.role !== "ADMIN") {
-                        router.push("/admin/login");
+                        router.push("/login");
                     }
                 } catch (err) {
-                    router.push("/admin/login");
+                    router.push("/login");
                 }
             }
         };

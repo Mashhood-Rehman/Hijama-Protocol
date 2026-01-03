@@ -3,41 +3,39 @@
 import { useState } from "react";
 import Link from "next/link";
 import ICONS from "../assets/Icons";
+import { useLoginMutation } from "@/lib/features/auth/authApi";
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
+
+    const [login, { isLoading }] = useLoginMutation();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError("");
-        setIsLoading(true);
+
+        console.log("Attempting login for:", email);
 
         try {
-            const response = await fetch("/api/auth/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password }),
-            });
+            const result = await login({ email, password }).unwrap();
+            console.log("Login successful:", result);
 
-            const data = await response.json();
-
-            if (response.ok) {
-                if (data.user.role === "ADMIN") {
-                    window.location.href = "/admin/dashboard";
-                } else {
-                    window.location.href = "/";
-                }
+            if (result.user.role === "ADMIN") {
+                window.location.href = "/admin/dashboard";
             } else {
-                setError(data.error || "Login failed");
-                setIsLoading(false);
+                window.location.href = "/";
             }
-        } catch (err) {
-            setError("An error occurred. Please try again.");
-            setIsLoading(false);
+        } catch (err: any) {
+            console.error("Login Error details:", err);
+            if (err.data && err.data.error) {
+                console.log("Server provided error message:", err.data.error);
+                setError(err.data.error);
+            } else {
+                setError("An error occurred. Please check console for details.");
+            }
         }
     };
 
