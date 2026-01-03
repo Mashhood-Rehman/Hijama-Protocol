@@ -71,12 +71,10 @@ export default function ProductDetailsPage() {
                     {/* Left Side: Image Gallery */}
                     <div className="space-y-6">
                         <div className="relative aspect-square rounded-4xl overflow-hidden bg-gray-50 border border-gray-100 group">
-                            <Image
+                            <img
                                 src={product.images[currentImageIndex]}
                                 alt={product.name}
-                                fill
-                                className="object-cover transition-all duration-700"
-                                priority
+                                className="w-full h-full object-cover transition-all duration-700"
                             />
 
                             {/* Manual Carousel Controls */}
@@ -112,7 +110,7 @@ export default function ProductDetailsPage() {
                                     className={`relative w-24 aspect-square rounded-2xl overflow-hidden border-2 transition-all shrink-0 ${currentImageIndex === index ? "border-(--luxe-gold) scale-105" : "border-transparent opacity-60 hover:opacity-100"
                                         }`}
                                 >
-                                    <Image src={img} alt={`${product.name} ${index + 1}`} fill className="object-cover" />
+                                    <img src={img} alt={`${product.name} ${index + 1}`} className="w-full h-full object-cover" />
                                 </button>
                             ))}
                         </div>

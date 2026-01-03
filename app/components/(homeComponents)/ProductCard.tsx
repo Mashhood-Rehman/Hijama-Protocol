@@ -31,11 +31,10 @@ export default function ProductCard({ product }: ProductCardProps) {
     return (
         <div className="group bg-white rounded-2xl border border-gray-100 p-4 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
             <Link href={`/products/${product.id}`} className="block relative aspect-square mb-4 overflow-hidden rounded-xl bg-gray-50">
-                <Image
+                <img
                     src={product.images[0]}
                     alt={product.name}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
             </Link>
 

@@ -75,11 +75,10 @@ export default function CartSidebar() {
                   className="group flex gap-4 animate-in fade-in slide-in-from-right-4 duration-300"
                 >
                   <div className="relative w-24 h-24 rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 shrink-0">
-                    <Image
+                    <img
                       src={item.images[0]}
                       alt={item.name}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                   </div>
 
