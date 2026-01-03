@@ -3,13 +3,11 @@
 import React from 'react';
 import StudyCard from '../components/(studiesComponents)/StudyCard';
 import Disclaimer from '../components/(common)/Disclaimer';
-import StickyProductBar from '../components/(homeComponents)/StickyProductBar';
 import { studiesData } from '@/app/helper/data';
 
 export default function StudiesPage() {
     return (
         <main className="min-h-screen bg-white">
-            <StickyProductBar />
 
             <section className="pt-32 pb-24 px-6 md:px-12 lg:px-24 bg-gray-50">
                 <div className="max-w-7xl mx-auto text-center space-y-6">
