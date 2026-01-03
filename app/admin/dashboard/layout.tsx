@@ -41,13 +41,13 @@ export default function AdminDashboardLayout({
             >
                 <div className="p-6 flex items-center justify-between">
                     {sidebarOpen && (
-                        <NextLink href="/" className="font-bold text-(--soft-glow-green) tracking-tight">
+                        <NextLink href="/" className="font-bold text-(--soft-glow-green) tracking-tight cursor-pointer">
                             HIJAMA
                         </NextLink>
                     )}
                     <button
                         onClick={() => setSidebarOpen(!sidebarOpen)}
-                        className="p-2 hover:bg-white/5 rounded-lg transition-colors"
+                        className="p-2 hover:bg-white/5 rounded-lg transition-colors cursor-pointer"
                     >
                         <ICONS.Menu size={20} />
                     </button>
@@ -61,7 +61,7 @@ export default function AdminDashboardLayout({
                             <NextLink
                                 key={item.label}
                                 href={item.href}
-                                className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${isActive
+                                className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all cursor-pointer ${isActive
                                     ? "bg-(--luxe-gold) text-(--charcoal-black) font-semibold"
                                     : "hover:bg-white/5 text-gray-400 hover:text-white"
                                     }`}

@@ -61,7 +61,7 @@ export default function ProductDetailsPage() {
             <div className="container mx-auto px-4 max-w-7xl">
                 <Link
                     href="/"
-                    className="inline-flex items-center gap-2 text-gray-500 hover:text-black mb-12 transition-colors group"
+                    className="inline-flex items-center gap-2 text-gray-500 hover:text-black mb-12 transition-colors group cursor-pointer"
                 >
                     <ICONS.ChevronLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
                     <span className="font-semibold">Back to Store</span>
@@ -107,7 +107,7 @@ export default function ProductDetailsPage() {
                                 <button
                                     key={index}
                                     onClick={() => setCurrentImageIndex(index)}
-                                    className={`relative w-24 aspect-square rounded-2xl overflow-hidden border-2 transition-all shrink-0 ${currentImageIndex === index ? "border-(--luxe-gold) scale-105" : "border-transparent opacity-60 hover:opacity-100"
+                                    className={`relative w-24 aspect-square rounded-2xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer ${currentImageIndex === index ? "border-(--luxe-gold) scale-105" : "border-transparent opacity-60 hover:opacity-100"
                                         }`}
                                 >
                                     <img src={img} alt={`${product.name} ${index + 1}`} className="w-full h-full object-cover" />

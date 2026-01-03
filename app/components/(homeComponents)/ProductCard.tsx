@@ -62,7 +62,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                     View Details
                 </Link>
                 <button
-                    className="p-3 rounded-xl border border-gray-100 hover:border-(--luxe-gold) hover:text-(--luxe-gold) transition-all group/btn"
+                    className="p-3 rounded-xl border border-gray-100 hover:border-(--luxe-gold) hover:text-(--luxe-gold) transition-all group/btn cursor-pointer"
                     onClick={handleAddToCart}
                 >
                     <ICONS.ShoppingCart size={20} className="group-hover/btn:scale-110 transition-transform" />

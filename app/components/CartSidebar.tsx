@@ -43,7 +43,7 @@ export default function CartSidebar() {
           </div>
           <button
             onClick={() => dispatch(setCartOpen(false))}
-            className="p-2 hover:bg-white/10 rounded-full transition-colors"
+            className="p-2 hover:bg-white/10 rounded-full transition-colors cursor-pointer"
           >
             <X size={24} />
           </button>
@@ -62,7 +62,7 @@ export default function CartSidebar() {
               </div>
               <button
                 onClick={() => dispatch(setCartOpen(false))}
-                className="text-(--luxe-gold) font-bold hover:underline"
+                className="text-(--luxe-gold) font-bold hover:underline cursor-pointer"
               >
                 Continue Shopping
               </button>
@@ -90,7 +90,7 @@ export default function CartSidebar() {
                         </h3>
                         <button
                           onClick={() => dispatch(removeFromCart(item.id))}
-                          className="text-gray-300 hover:text-red-500 transition-colors p-1"
+                          className="text-gray-300 hover:text-red-500 transition-colors p-1 cursor-pointer"
                         >
                           <Trash2 size={16} />
                         </button>
@@ -104,7 +104,7 @@ export default function CartSidebar() {
                       <div className="flex items-center p-1 bg-gray-50 rounded-lg border border-gray-100">
                         <button
                           onClick={() => dispatch(updateQuantity({ id: item.id, quantity: item.quantity - 1 }))}
-                          className="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-black transition-colors"
+                          className="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-black transition-colors cursor-pointer"
                         >
                           <Minus size={14} />
                         </button>
@@ -115,7 +115,7 @@ export default function CartSidebar() {
 
                         <button
                           onClick={() => dispatch(updateQuantity({ id: item.id, quantity: item.quantity + 1 }))}
-                          className="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-black transition-colors"
+                          className="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-black transition-colors cursor-pointer"
                         >
                           <Plus size={14} />
                         </button>
@@ -150,7 +150,7 @@ export default function CartSidebar() {
           <Link
             href="/checkout"
             onClick={() => dispatch(setCartOpen(false))}
-            className={`w-full py-4 bg-black text-white rounded-2xl font-bold hover:bg-gray-800 transition-all shadow-2xl flex items-center justify-center gap-3 uppercase tracking-widest text-sm ${items.length === 0 ? 'pointer-events-none opacity-50' : ''}`}
+            className={`w-full py-4 bg-black text-white rounded-2xl font-bold hover:bg-gray-800 transition-all shadow-2xl flex items-center justify-center gap-3 uppercase tracking-widest text-sm cursor-pointer ${items.length === 0 ? 'pointer-events-none opacity-50' : ''}`}
           >
             Checkout Protocol
           </Link>

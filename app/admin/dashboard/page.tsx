@@ -29,7 +29,7 @@ export default function AdminProductsPage() {
                 <div className="flex gap-2 justify-end">
                     <button
                         onClick={() => toast.dismiss(t.id)}
-                        className="px-3 py-1.5 text-xs rounded-lg border border-white/10 hover:bg-white/5 transition-colors"
+                        className="px-3 py-1.5 text-xs rounded-lg border border-white/10 hover:bg-white/5 transition-colors cursor-pointer"
                     >
                         Cancel
                     </button>
@@ -52,7 +52,7 @@ export default function AdminProductsPage() {
                                 toast.error("An error occurred while deleting the product", { id: loadingToast });
                             }
                         }}
-                        className="px-3 py-1.5 text-xs bg-red-500/80 hover:bg-red-500 text-white rounded-lg transition-colors font-semibold"
+                        className="px-3 py-1.5 text-xs bg-red-500/80 hover:bg-red-500 text-white rounded-lg transition-colors font-semibold cursor-pointer"
                     >
                         Delete
                     </button>
@@ -169,13 +169,13 @@ export default function AdminProductsPage() {
                                             <div className="flex items-center justify-end gap-2">
                                                 <NextLink
                                                     href={`/admin/dashboard/products/add?id=${product.id}`}
-                                                    className="p-2 hover:bg-white/10 rounded-lg text-gray-400 hover:text-white transition-colors"
+                                                    className="p-2 hover:bg-white/10 rounded-lg text-gray-400 hover:text-white transition-colors cursor-pointer"
                                                 >
                                                     <ICONS.Edit size={16} />
                                                 </NextLink>
                                                 <button
                                                     onClick={() => handleDelete(product.id, product.name)}
-                                                    className="p-2 hover:bg-red-400/10 rounded-lg text-gray-400 hover:text-red-400 transition-colors"
+                                                    className="p-2 hover:bg-red-400/10 rounded-lg text-gray-400 hover:text-red-400 transition-colors cursor-pointer"
                                                 >
                                                     <ICONS.Trash size={16} />
                                                 </button>
@@ -192,9 +192,9 @@ export default function AdminProductsPage() {
                 <div className="px-6 py-4 bg-white/5 border-t border-white/10 flex items-center justify-between">
                     <span className="text-sm text-gray-400">Showing 1 to 4 of 24 results</span>
                     <div className="flex items-center gap-2">
-                        <button className="p-2 disabled:opacity-50 text-gray-400 hover:text-white"><ICONS.ChevronLeft size={20} /></button>
-                        <button className="w-8 h-8 rounded-lg bg-(--luxe-gold) text-(--charcoal-black) text-sm font-bold">1</button>
-                        <button className="p-2 text-gray-400 hover:text-white"><ICONS.ChevronRight size={20} /></button>
+                        <button className="p-2 disabled:opacity-50 text-gray-400 hover:text-white cursor-pointer"><ICONS.ChevronLeft size={20} /></button>
+                        <button className="w-8 h-8 rounded-lg bg-(--luxe-gold) text-(--charcoal-black) text-sm font-bold cursor-pointer">1</button>
+                        <button className="p-2 text-gray-400 hover:text-white cursor-pointer"><ICONS.ChevronRight size={20} /></button>
                     </div>
                 </div>
             </div>

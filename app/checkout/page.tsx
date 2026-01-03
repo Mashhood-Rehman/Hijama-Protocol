@@ -23,7 +23,7 @@ export default function CheckoutPage() {
                     </div>
                     <h1 className="text-3xl font-bold text-white">Your cart is empty</h1>
                     <p className="text-gray-400 max-w-xs mx-auto">Add some premium clinical products to your cart before checking out.</p>
-                    <Link href="/" className="inline-block bg-linear-to-r from-(--luxe-gold) to-[#A67C37] text-(--charcoal-black) px-8 py-3 rounded-xl font-bold transition-transform hover:scale-105">
+                    <Link href="/" className="inline-block bg-linear-to-r from-(--luxe-gold) to-[#A67C37] text-(--charcoal-black) px-8 py-3 rounded-xl font-bold transition-transform hover:scale-105 cursor-pointer">
                         Browse Products
                     </Link>
                 </div>
@@ -77,7 +77,7 @@ export default function CheckoutPage() {
                             <div className="space-y-4">
                                 <button
                                     onClick={() => setPaymentMethod("card")}
-                                    className={`w-full flex items-center justify-between p-4 rounded-xl border transition-all ${paymentMethod === 'card' ? 'bg-(--luxe-gold)/10 border-(--luxe-gold)' : 'bg-white/5 border-white/10 hover:bg-white/10'}`}
+                                    className={`w-full flex items-center justify-between p-4 rounded-xl border transition-all cursor-pointer ${paymentMethod === 'card' ? 'bg-(--luxe-gold)/10 border-(--luxe-gold)' : 'bg-white/5 border-white/10 hover:bg-white/10'}`}
                                 >
                                     <div className="flex items-center gap-4">
                                         <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${paymentMethod === 'card' ? 'border-(--luxe-gold)' : 'border-gray-500'}`}>
@@ -110,7 +110,7 @@ export default function CheckoutPage() {
 
                                 <button
                                     onClick={() => setPaymentMethod("crypto")}
-                                    className={`w-full flex items-center justify-between p-4 rounded-xl border transition-all ${paymentMethod === 'crypto' ? 'bg-(--luxe-gold)/10 border-(--luxe-gold)' : 'bg-white/5 border-white/10 hover:bg-white/10'}`}
+                                    className={`w-full flex items-center justify-between p-4 rounded-xl border transition-all cursor-pointer ${paymentMethod === 'crypto' ? 'bg-(--luxe-gold)/10 border-(--luxe-gold)' : 'bg-white/5 border-white/10 hover:bg-white/10'}`}
                                 >
                                     <div className="flex items-center gap-4">
                                         <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${paymentMethod === 'crypto' ? 'border-(--luxe-gold)' : 'border-gray-500'}`}>
@@ -123,7 +123,7 @@ export default function CheckoutPage() {
 
                                 <button
                                     onClick={() => setPaymentMethod("bank")}
-                                    className={`w-full flex items-center justify-between p-4 rounded-xl border transition-all ${paymentMethod === 'bank' ? 'bg-(--luxe-gold)/10 border-(--luxe-gold)' : 'bg-white/5 border-white/10 hover:bg-white/10'}`}
+                                    className={`w-full flex items-center justify-between p-4 rounded-xl border transition-all cursor-pointer ${paymentMethod === 'bank' ? 'bg-(--luxe-gold)/10 border-(--luxe-gold)' : 'bg-white/5 border-white/10 hover:bg-white/10'}`}
                                 >
                                     <div className="flex items-center gap-4">
                                         <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${paymentMethod === 'bank' ? 'border-(--luxe-gold)' : 'border-gray-500'}`}>
@@ -136,7 +136,7 @@ export default function CheckoutPage() {
                             </div>
                         </section>
 
-                        <button className="w-full bg-linear-to-r from-(--luxe-gold) to-[#A67C37] text-(--charcoal-black) py-4 rounded-2xl font-bold text-lg transition-all hover:scale-[1.01] hover:shadow-[0_0_30px_rgba(197,160,89,0.3)] active:scale-[0.99] flex items-center justify-center gap-2 group">
+                        <button className="w-full bg-linear-to-r from-(--luxe-gold) to-[#A67C37] text-(--charcoal-black) py-4 rounded-2xl font-bold text-lg transition-all hover:scale-[1.01] hover:shadow-[0_0_30px_rgba(197,160,89,0.3)] active:scale-[0.99] flex items-center justify-center gap-2 group cursor-pointer">
                             Complete Order
                             <ICONS.ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                         </button>

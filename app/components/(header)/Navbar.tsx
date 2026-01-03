@@ -174,14 +174,14 @@ export default function Navbar() {
                                 {user.role === "ADMIN" && (
                                     <Link
                                         href="/admin/dashboard"
-                                        className="text-sm font-semibold hover:text-(--luxe-gold) transition"
+                                        className="text-sm font-semibold hover:text-(--luxe-gold) transition cursor-pointer"
                                     >
                                         Dashboard
                                     </Link>
                                 )}
                                 <button
                                     onClick={handleLogout}
-                                    className="flex items-center gap-2 px-4 py-2 border border-gray-200 text-gray-700 rounded-full hover:bg-gray-50 transition-all text-sm font-medium"
+                                    className="flex items-center gap-2 px-4 py-2 border border-gray-200 text-gray-700 rounded-full hover:bg-gray-50 transition-all text-sm font-medium cursor-pointer"
                                 >
                                     <ICONS.LogOut size={16} />
                                     <span>Logout</span>

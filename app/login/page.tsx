@@ -99,7 +99,7 @@ export default function LoginPage() {
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white transition-colors p-2"
+                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white transition-colors p-2 cursor-pointer"
                                 >
                                     {showPassword ? <ICONS.X size={18} /> : <ICONS.Menu size={18} />}
                                 </button>
@@ -107,7 +107,7 @@ export default function LoginPage() {
                         </div>
 
                         <div className="flex items-center justify-end">
-                            <button type="button" className="text-sm text-(--luxe-gold) hover:text-(--soft-glow-green) transition-colors font-medium">
+                            <button type="button" className="text-sm text-(--luxe-gold) hover:text-(--soft-glow-green) transition-colors font-medium cursor-pointer">
                                 Forgot password?
                             </button>
                         </div>
@@ -115,7 +115,7 @@ export default function LoginPage() {
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className={`w-full bg-linear-to-r from-(--luxe-gold) to-[#A67C37] text-(--charcoal-black) py-3 rounded-xl font-bold text-md hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(197,160,89,0.3)] active:scale-[0.98] transition-all disabled:opacity-50 disabled:scale-100 disabled:hover:scale-100 flex items-center justify-center gap-2 group`}
+                            className={`w-full bg-linear-to-r from-(--luxe-gold) to-[#A67C37] text-(--charcoal-black) py-3 rounded-xl font-bold text-md hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(197,160,89,0.3)] active:scale-[0.98] transition-all disabled:opacity-50 disabled:scale-100 disabled:hover:scale-100 flex items-center justify-center gap-2 group cursor-pointer`}
                         >
                             <span>{isLoading ? "Authenticating..." : "Log In"}</span>
                             {!isLoading && <ICONS.ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />}

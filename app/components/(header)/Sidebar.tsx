@@ -36,7 +36,7 @@ export default function Sidebar({ open, setOpen, navItems }: SidebarProps) {
           <div className="flex items-center cursor-pointer justify-between mb-6">
             <span className="text-lg font-semibold">Menu</span>
 
-            <button onClick={() => setOpen(false)}>
+            <button onClick={() => setOpen(false)} className="cursor-pointer">
               <ICONS.X size={26} />
             </button>
           </div>
@@ -86,11 +86,11 @@ export default function Sidebar({ open, setOpen, navItems }: SidebarProps) {
 
             {/* Extra buttons */}
             <div className="border-t border-white/10 pt-3 mt-4 flex flex-col gap-3">
-              <button className="text-sm text-left hover:text-(--luxe-gold) py-2">
+              <button className="text-sm text-left hover:text-(--luxe-gold) py-2 cursor-pointer">
                 EN / UR
               </button>
 
-              <button className="text-sm text-left hover:text-(--luxe-gold) py-2 flex items-center gap-2">
+              <button className="text-sm text-left hover:text-(--luxe-gold) py-2 flex items-center gap-2 cursor-pointer">
                 <ICONS.ShoppingCart size={18} />
                 Cart
               </button>

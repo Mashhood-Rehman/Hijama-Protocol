@@ -67,7 +67,7 @@ export default function Hero() {
                 <p className="text-xl text-(--luxe-gold) font-medium">
                   Tradition Elevated.
                 </p>
-                <button className="btn btn-transparent">Download Studies</button>
+                <button className="btn btn-transparent cursor-pointer">Download Studies</button>
               </div>
             </div>
 
