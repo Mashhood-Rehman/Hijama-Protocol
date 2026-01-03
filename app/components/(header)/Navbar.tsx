@@ -63,6 +63,25 @@ export default function Navbar() {
         }, 200);
     };
 
+    const [user, setUser] = useState<any>(null);
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const res = await fetch("/api/auth/me");
+            const data = await res.json();
+            if (data.user) {
+                setUser(data.user);
+            }
+        };
+        fetchUser();
+    }, []);
+
+    const handleLogout = async () => {
+        await fetch("/api/auth/logout", { method: "POST" });
+        setUser(null);
+        window.location.href = "/";
+    };
+
     useGoogleTranslate();
 
 
@@ -149,14 +168,34 @@ export default function Navbar() {
                             )}
                         </div>
 
-                        {/* Admin Login Button */}
-                        <Link
-                            href="/admin/login"
-                            className="flex items-center gap-2 px-4 py-2 border border-(--luxe-gold) text-(--luxe-gold) rounded-full hover:bg-(--luxe-gold) hover:text-white! transition-all text-sm font-medium"
-                        >
-                            <ICONS.LogIn size={16} />
-                            <span>Admin</span>
-                        </Link>
+                        {/* Auth Section */}
+                        {user ? (
+                            <div className="flex items-center gap-4">
+                                {user.role === "ADMIN" && (
+                                    <Link
+                                        href="/admin/dashboard"
+                                        className="text-sm font-semibold hover:text-(--luxe-gold) transition"
+                                    >
+                                        Dashboard
+                                    </Link>
+                                )}
+                                <button
+                                    onClick={handleLogout}
+                                    className="flex items-center gap-2 px-4 py-2 border border-gray-200 text-gray-700 rounded-full hover:bg-gray-50 transition-all text-sm font-medium"
+                                >
+                                    <ICONS.LogOut size={16} />
+                                    <span>Logout</span>
+                                </button>
+                            </div>
+                        ) : (
+                            <Link
+                                href="/login"
+                                className="flex items-center gap-2 px-4 py-2 border border-(--luxe-gold) text-(--luxe-gold) rounded-full hover:bg-(--luxe-gold) hover:text-white! transition-all text-sm font-medium"
+                            >
+                                <ICONS.LogIn size={16} />
+                                <span>Login</span>
+                            </Link>
+                        )}
 
                     </div>
 

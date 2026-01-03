@@ -15,15 +15,21 @@ export default function AdminDashboardLayout({
 
     const navItems = [
         { label: "Overview", href: "/admin/dashboard", icon: ICONS.LayoutDashboard },
-        { label: "Products", href: "/admin/dashboard", icon: ICONS.Package }, // In a real app, this might be /admin/dashboard/products
-        { label: "Customers", href: "#", icon: ICONS.Users },
+        { label: "Products", href: "/admin/dashboard", icon: ICONS.Package },
+        { label: "Customers", href: "/admin/dashboard/customers", icon: ICONS.Users },
         { label: "Orders", href: "#", icon: ICONS.ShoppingCart },
         { label: "Analytics", href: "#", icon: ICONS.TrendingUp },
     ];
 
-    const handleLogout = () => {
-        document.cookie = "admin_session=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-        window.location.href = "/admin/login";
+    const handleLogout = async () => {
+        try {
+            await fetch("/api/auth/logout", { method: "POST" });
+            document.cookie = "auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+            window.location.href = "/admin/login";
+        } catch (err) {
+            console.error("Logout failed:", err);
+            window.location.href = "/admin/login";
+        }
     };
 
     return (

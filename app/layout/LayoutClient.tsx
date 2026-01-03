@@ -15,13 +15,20 @@ export default function LayoutClient({
     const router = useRouter();
 
     useEffect(() => {
-        if (pathname.startsWith("/admin/dashboard")) {
-            const cookies = document.cookie.split(';');
-            const authCookie = cookies.find(c => c.trim().startsWith('admin_session='));
-            if (!authCookie) {
-                router.push("/admin/login");
+        const checkAuth = async () => {
+            if (pathname.startsWith("/admin/dashboard")) {
+                try {
+                    const res = await fetch("/api/auth/me");
+                    const data = await res.json();
+                    if (!data.user || data.user.role !== "ADMIN") {
+                        router.push("/admin/login");
+                    }
+                } catch (err) {
+                    router.push("/admin/login");
+                }
             }
-        }
+        };
+        checkAuth();
     }, [pathname, router]);
 
     const hideNavbar = pathname.startsWith("/admin");

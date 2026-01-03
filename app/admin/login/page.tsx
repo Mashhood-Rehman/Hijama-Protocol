@@ -12,22 +12,34 @@ export default function AdminLoginPage() {
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
         setError("");
 
-        // Simulated login delay
-        setTimeout(() => {
-            if (email === "admin@test.com" && password === "password123") {
-                // Set cookie for authentication
-                document.cookie = "admin_session=authenticated; path=/; max-age=86400"; // 24 hours
-                window.location.href = "/admin/dashboard";
+        try {
+            const response = await fetch("/api/auth/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                if (data.user.role === "ADMIN") {
+                    window.location.href = "/admin/dashboard";
+                } else {
+                    window.location.href = "/";
+                }
             } else {
-                setError("Invalid email or password. Please try again.");
+                setError(data.error || "Login failed. Please try again.");
                 setIsLoading(false);
             }
-        }, 1000);
+        } catch (err) {
+            setError("An error occurred. Please try again later.");
+            setIsLoading(false);
+        }
     };
 
     return (

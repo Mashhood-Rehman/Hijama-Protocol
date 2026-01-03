@@ -33,10 +33,9 @@ export default function CartSidebar() {
         `}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100 bg-(--deep-green) text-white">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 bg-(--deep-green) text-white">
           <div className="flex items-center gap-3">
             <ShoppingCart size={22} className="text-(--luxe-gold)" />
-            <h2 className="text-xl font-bold tracking-tight">Your Selection</h2>
             <span className="bg-white/10 px-2 py-0.5 rounded-full text-xs font-medium">
               {items.reduce((acc, item) => acc + item.quantity, 0)} items
             </span>
