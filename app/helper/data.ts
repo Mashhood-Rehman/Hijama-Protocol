@@ -39,10 +39,10 @@ export type Product = {
   id: string;
   name: string;
   description: string;
-  price: string;
+  price: number;
   images: string[];
-  category: string;
   details: string[];
+  stock?: number;
 };
 
 
@@ -488,13 +488,12 @@ export const products: Product[] = [
     id: "ruh-armor",
     name: "RÜH-ARMOR™",
     description: "Multi-pillar detox system combining heavy metal binding, NAD support, and antioxidant synergy.",
-    price: "$99.00",
+    price: 99.00,
     images: [
       "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=2070&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1547489432-cf93fa6c71ee?q=80&w=2070&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?q=80&w=2070&auto=format&fit=crop"
     ],
-    category: "Cellular Health",
     details: [
       "Heavy Metal Binding (Zeolite Technology)",
       "NAD+ Support (Nicotinamide Riboside)",
@@ -507,13 +506,12 @@ export const products: Product[] = [
     id: "nur-armor",
     name: "NUR-ARMOR™",
     description: "Neurological support with advanced antioxidant delivery and Dr. Delgado's endorsed protocol.",
-    price: "$119.00",
+    price: 119.00,
     images: [
       "https://images.unsplash.com/photo-1550573104-d02bc3a3fb95?q=80&w=2070&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1471864190281-ad5fe9ac770b?q=80&w=2070&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1587854692152-cbe660dbbb88?q=80&w=2070&auto=format&fit=crop"
     ],
-    category: "Neurological Support",
     details: [
       "Blood-Brain Barrier Penetration",
       "Cardiac Tissue Protection",
@@ -526,13 +524,12 @@ export const products: Product[] = [
     id: "augmented-nac",
     name: "Augmented NAC™",
     description: "Quantum-enhanced NAC providing 8x–40x better spike protein denaturation and oxidative defense.",
-    price: "$149.00",
+    price: 149.00,
     images: [
       "https://images.unsplash.com/photo-1585435557343-3b092031a831?q=80&w=2070&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1584017911766-d451b3d0e86f?q=80&w=2070&auto=format&fit=crop"
     ],
-    category: "Oxidative Defense",
     details: [
       "8x-40x Enhanced Bioavailability",
       "Spike Protein Denaturation",

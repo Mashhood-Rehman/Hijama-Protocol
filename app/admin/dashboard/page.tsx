@@ -22,26 +22,53 @@ export default function AdminProductsPage() {
         }
     };
 
-    const handleDelete = async (id: string) => {
-        if (!window.confirm("Are you sure you want to delete this product?")) return;
-
-        const loadingToast = toast.loading("Deleting product...");
-
-        try {
-            const response = await fetch(`/api/products/${id}`, {
-                method: "DELETE",
-            });
-            if (response.ok) {
-                toast.success("Product deleted successfully", { id: loadingToast });
-                fetchProducts();
-            } else {
-                const errorData = await response.json();
-                toast.error(errorData.error || "Failed to delete product", { id: loadingToast });
+    const handleDelete = async (id: string, name: string) => {
+        toast((t) => (
+            <div className="flex flex-col gap-3 min-w-[200px]">
+                <p className="text-sm font-medium">Delete <span className="text-(--luxe-gold)">{name}</span>?</p>
+                <div className="flex gap-2 justify-end">
+                    <button
+                        onClick={() => toast.dismiss(t.id)}
+                        className="px-3 py-1.5 text-xs rounded-lg border border-white/10 hover:bg-white/5 transition-colors"
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        onClick={async () => {
+                            toast.dismiss(t.id);
+                            const loadingToast = toast.loading("Deleting product...");
+                            try {
+                                const response = await fetch(`/api/products/${id}`, {
+                                    method: "DELETE",
+                                });
+                                if (response.ok) {
+                                    toast.success("Product deleted successfully", { id: loadingToast });
+                                    fetchProducts();
+                                } else {
+                                    const errorData = await response.json();
+                                    toast.error(errorData.error || "Failed to delete product", { id: loadingToast });
+                                }
+                            } catch (error) {
+                                toast.error("An error occurred while deleting the product", { id: loadingToast });
+                            }
+                        }}
+                        className="px-3 py-1.5 text-xs bg-red-500/80 hover:bg-red-500 text-white rounded-lg transition-colors font-semibold"
+                    >
+                        Delete
+                    </button>
+                </div>
+            </div>
+        ), {
+            duration: 6000,
+            style: {
+                background: "#0A2F23",
+                color: "#fff",
+                border: "1px solid rgba(255,255,255,0.1)",
+                borderRadius: "16px",
+                padding: "16px",
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)"
             }
-        } catch (error) {
-            console.error("Delete error:", error);
-            toast.error("An error occurred while deleting the product", { id: loadingToast });
-        }
+        });
     };
 
     useEffect(() => {
@@ -49,8 +76,7 @@ export default function AdminProductsPage() {
     }, []);
 
     const filteredProducts = (Array.isArray(products) ? products : []).filter((p: any) =>
-        p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        p.category.toLowerCase().includes(searchTerm.toLowerCase())
+        p.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
@@ -62,16 +88,12 @@ export default function AdminProductsPage() {
                         <ICONS.Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
                         <input
                             type="text"
-                            placeholder="Search products..."
+                            placeholder="Search products by name..."
                             className="w-full bg-white/5 border border-white/10 rounded-lg py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-1 focus:ring-(--luxe-gold)"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
                     </div>
-                    <button className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm hover:bg-white/10 transition-colors">
-                        <ICONS.Filter size={16} />
-                        <span>Filter</span>
-                    </button>
                 </div>
 
                 <NextLink
@@ -90,7 +112,6 @@ export default function AdminProductsPage() {
                         <thead>
                             <tr className="bg-white/5 border-b border-white/10">
                                 <th className="px-6 py-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Product</th>
-                                <th className="px-6 py-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Category</th>
                                 <th className="px-6 py-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Price</th>
                                 <th className="px-6 py-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Stock</th>
                                 <th className="px-6 py-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Status</th>
@@ -100,19 +121,19 @@ export default function AdminProductsPage() {
                         <tbody className="divide-y divide-white/10">
                             {loading ? (
                                 <tr>
-                                    <td colSpan={6} className="px-6 py-10 text-center text-gray-500">
+                                    <td colSpan={5} className="px-6 py-10 text-center text-gray-500">
                                         Loading products...
                                     </td>
                                 </tr>
                             ) : filteredProducts.length === 0 ? (
                                 <tr>
-                                    <td colSpan={6} className="px-6 py-10 text-center text-gray-500">
+                                    <td colSpan={5} className="px-6 py-10 text-center text-gray-500">
                                         No products found.
                                     </td>
                                 </tr>
                             ) : (
                                 filteredProducts.map((product) => (
-                                    <tr key={product._id} className="hover:bg-white/5 transition-colors group">
+                                    <tr key={product.id} className="hover:bg-white/5 transition-colors group">
                                         <td className="px-6 py-4">
                                             <div className="flex items-center gap-3">
                                                 <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-(--deep-green) to-(--deep-green-dark) border border-white/10 flex items-center justify-center text-(--luxe-gold)">
@@ -120,11 +141,10 @@ export default function AdminProductsPage() {
                                                 </div>
                                                 <div>
                                                     <div className="font-medium text-white">{product.name}</div>
-                                                    <div className="text-xs text-gray-500">#{product._id.toString().slice(-6)}</div>
+                                                    <div className="text-xs text-gray-500">#{product.id.toString().slice(-6)}</div>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className="px-6 py-4 text-sm text-gray-300">{product.category}</td>
                                         <td className="px-6 py-4 text-sm font-medium text-white">${product.price.toFixed(2)}</td>
                                         <td className="px-6 py-4">
                                             <div className="flex flex-col gap-1">
@@ -148,13 +168,13 @@ export default function AdminProductsPage() {
                                         <td className="px-6 py-4 text-right">
                                             <div className="flex items-center justify-end gap-2">
                                                 <NextLink
-                                                    href={`/admin/dashboard/products/add?id=${product._id}`}
+                                                    href={`/admin/dashboard/products/add?id=${product.id}`}
                                                     className="p-2 hover:bg-white/10 rounded-lg text-gray-400 hover:text-white transition-colors"
                                                 >
                                                     <ICONS.Edit size={16} />
                                                 </NextLink>
                                                 <button
-                                                    onClick={() => handleDelete(product._id)}
+                                                    onClick={() => handleDelete(product.id, product.name)}
                                                     className="p-2 hover:bg-red-400/10 rounded-lg text-gray-400 hover:text-red-400 transition-colors"
                                                 >
                                                     <ICONS.Trash size={16} />

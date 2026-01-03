@@ -14,7 +14,6 @@ function AddProductContent() {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const [formData, setFormData] = useState({
         name: "",
-        category: "Kits",
         price: "",
         stock: "",
         description: "",
@@ -30,19 +29,19 @@ function AddProductContent() {
             const fetchProduct = async () => {
                 try {
                     const response = await fetch(`/api/products/${productId}`);
-                    if (response) {
+                    if (response.ok) {
                         const data = await response.json();
                         setFormData({
                             name: data.name || "",
-                            category: data.category || "Kits",
-                            price: data.price ? data.price.toString() : "",
-                            stock: data.stock ? data.stock.toString() : "0",
+                            price: data.price !== undefined && data.price !== null ? data.price.toString() : "",
+                            stock: data.stock !== undefined && data.stock !== null ? data.stock.toString() : "0",
                             description: data.description || "",
                             status: data.status || "Draft",
                             imageUrl: (data.images && data.images.length > 0) ? data.images[0] : ""
                         });
                     } else {
-                        toast.error("Failed to fetch product details");
+                        const errorData = await response.json();
+                        toast.error(errorData.error || "Failed to fetch product details");
                     }
                 } catch (error) {
                     console.error("Fetch product error:", error);
@@ -217,20 +216,6 @@ function AddProductContent() {
                             <option value="Active">Active</option>
                             <option value="Draft">Draft</option>
                             <option value="Archived">Archived</option>
-                        </select>
-                    </div>
-
-                    <div className="bg-white/5 border border-white/10 p-6 rounded-2xl space-y-4">
-                        <h3 className="text-lg font-semibold text-white">Category</h3>
-                        <select
-                            className="w-full bg-[#0A2F23] border border-white/10 rounded-lg py-2.5 px-4 text-white focus:outline-none focus:ring-1 focus:ring-(--luxe-gold)"
-                            value={formData.category}
-                            onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                        >
-                            <option value="Kits">Hijama Kits</option>
-                            <option value="Accessories">Accessories</option>
-                            <option value="Education">Education</option>
-                            <option value="Equipment">Equipment</option>
                         </select>
                     </div>
 

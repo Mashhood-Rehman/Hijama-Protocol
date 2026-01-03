@@ -6,7 +6,9 @@ import Sidebar from "./Sidebar";
 import ICONS from "../../assets/Icons";
 import { useGoogleTranslate } from "@/app/utils/useGoogleTranslate";
 import { mainNavItems, moreNavItems } from "@/app/helper/data";
-import CartSidebar from "../CartSidebar";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "@/lib/store";
+import { toggleCart } from "@/lib/features/cart/cartSlice";
 
 export default function Navbar() {
 
@@ -14,10 +16,13 @@ export default function Navbar() {
     const dropdownRef = useRef(null);
     const [open, setOpen] = useState(false);
     const [scrolled, isScrolled] = useState(false);
-    const [cartOpen, setCartOpen] = useState(false);
     const [tooltip, setTooltip] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const dropdownTimer = useRef<NodeJS.Timeout | null>(null);
+
+    const dispatch = useDispatch();
+    const cartItems = useSelector((state: RootState) => state.cart.items);
+    const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -116,20 +121,25 @@ export default function Navbar() {
 
                         <div className="relative" ref={ref}>
                             <button
-                                onClick={() => setTooltip(!tooltip)}
-                                className="hover:text-(--luxe-gold) cursor-pointer"
+                                onClick={() => dispatch(toggleCart())}
+                                className="hover:text-(--luxe-gold) cursor-pointer relative"
                             >
                                 <ICONS.ShoppingCart size={22} />
+                                {totalItems > 0 && (
+                                    <span className="absolute -top-2 -right-2 bg-(--luxe-gold) text-black text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center animate-pulse">
+                                        {totalItems}
+                                    </span>
+                                )}
                             </button>
 
                             {tooltip && (
                                 <div className="absolute w-32 text-black right-0 mt-2 bg-white shadow-lg rounded-md p-3 z-200">
-                                    <p className="text-xs ">Items: 3</p>
+                                    <p className="text-xs ">Items: {cartItems.length}</p>
 
                                     <button
                                         onClick={() => {
                                             setTooltip(false);
-                                            setCartOpen(true);
+                                            dispatch(toggleCart());
                                         }}
                                         className="mt-2 w-full py-2 bg-(--luxe-gold) text-white cursor-pointer rounded-md hover:opacity-90 transition"
                                     >
@@ -147,8 +157,6 @@ export default function Navbar() {
                             <ICONS.LogIn size={16} />
                             <span>Admin</span>
                         </Link>
-
-                        <CartSidebar open={cartOpen} setOpen={setCartOpen} />
 
                     </div>
 

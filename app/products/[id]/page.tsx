@@ -4,13 +4,36 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { products } from "@/app/helper/data";
 import ICONS from "@/app/assets/Icons";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/lib/features/cart/cartSlice";
+import { useGetProductByIdQuery } from "@/lib/features/products/productsApi";
+import { toast } from "react-hot-toast";
 
 export default function ProductDetailsPage() {
     const { id } = useParams();
-    const product = products.find((p) => p.id === id);
+    const dispatch = useDispatch();
+    const { data: product, isLoading: loading } = useGetProductByIdQuery(id as string, { skip: !id });
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    const handleAddToCart = () => {
+        if (!product) return;
+        dispatch(addToCart({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            images: product.images
+        }));
+        toast.success(`${product.name} added to cart!`);
+    };
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-white">
+                <div className="w-12 h-12 border-4 border-(--luxe-gold)/20 border-t-(--luxe-gold) rounded-full animate-spin"></div>
+            </div>
+        );
+    }
 
     if (!product) {
         return (
@@ -82,7 +105,7 @@ export default function ProductDetailsPage() {
 
                         {/* Thumbnail Preview Bar */}
                         <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
-                            {product.images.map((img, index) => (
+                            {product.images.map((img: string, index: number) => (
                                 <button
                                     key={index}
                                     onClick={() => setCurrentImageIndex(index)}
@@ -98,9 +121,6 @@ export default function ProductDetailsPage() {
                     {/* Right Side: Product Info */}
                     <div className="space-y-10 lg:sticky lg:top-32">
                         <div className="space-y-4">
-                            <span className="text-(--luxe-gold) font-bold tracking-[0.2em] uppercase text-sm">
-                                {product.category}
-                            </span>
                             <h1 className="text-5xl font-bold text-gray-900 leading-tight">
                                 {product.name}
                             </h1>
@@ -115,7 +135,7 @@ export default function ProductDetailsPage() {
                             </p>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {product.details.map((detail, idx) => (
+                                {product.details?.map((detail: string, idx: number) => (
                                     <div key={idx} className="flex items-center gap-3 text-gray-700">
                                         <div className="p-1 rounded-full bg-(--luxe-gold)/10 text-(--luxe-gold)">
                                             <ICONS.Check size={14} />
@@ -129,7 +149,7 @@ export default function ProductDetailsPage() {
                         <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-100">
                             <button
                                 className="flex-1 cursor-pointer bg-black text-white py-2 rounded-2xl font-bold text-lg hover:bg-gray-800 transition-all shadow-2xl flex items-center justify-center gap-3 group"
-                                onClick={() => console.log(`Added ${product.name} to cart`)}
+                                onClick={handleAddToCart}
                             >
                                 <ICONS.ShoppingCart size={24} className="group-hover:scale-110 transition-transform" />
                                 Add to Cart

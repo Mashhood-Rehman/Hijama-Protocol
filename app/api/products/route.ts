@@ -1,16 +1,11 @@
 import { NextResponse } from "next/server";
-import mongoose from "mongoose";
-import Product from "@/models/Product";
-
-async function connectDB() {
-    if (mongoose.connection.readyState >= 1) return;
-    return mongoose.connect(process.env.MONGODB_URI!);
-}
+import prisma from "@/lib/prisma";
 
 export async function GET() {
     try {
-        await connectDB();
-        const products = await Product.find().sort({ createdAt: -1 });
+        const products = await prisma.product.findMany({
+            orderBy: { createdAt: 'desc' }
+        });
         return NextResponse.json(products);
     } catch (error: any) {
         return NextResponse.json({ error: error.message }, { status: 500 });
@@ -19,9 +14,21 @@ export async function GET() {
 
 export async function POST(req: Request) {
     try {
-        await connectDB();
         const body = await req.json();
-        const product = await Product.create(body);
+        const { name, description, price, images, details, stock, status, pdf } = body;
+
+        const product = await prisma.product.create({
+            data: {
+                name,
+                description,
+                price: parseFloat(price),
+                images: images || [],
+                details: details || [],
+                stock: parseInt(stock || "0"),
+                status: status || "Draft",
+                pdf: pdf || null
+            }
+        });
         return NextResponse.json(product, { status: 201 });
     } catch (error: any) {
         return NextResponse.json({ error: error.message }, { status: 500 });

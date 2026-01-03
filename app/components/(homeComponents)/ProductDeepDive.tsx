@@ -18,81 +18,121 @@ export default function ProductDeepDive() {
           <SectionHeader heading="RÜH-ARMOR™ — Five Pillar Matrix" />
         </div>
 
-        {/* Interactive Cube Selector */}
-        <div className="flex justify-center gap-3 flex-wrap">
-          {pillars.map((pillar, index) => {
-            return (
-              <button
-                key={index}
-                onClick={() => setActivePillar(index)}
-                className={`px-6 cursor-pointer py-3 rounded-lg border-2 transition-all flex items-center gap-2 ${activePillar === index
-                  ? "bg-[#1a3a2e] text-white border-(--luxe-gold)"
-                  : "bg-gray-50 text-gray-700 border-gray-300 hover:border-[#8fb996]"
-                  }`}
-              >
-                <pillar.icon className="w-5 h-5" />
-                <span className="text-sm font-medium">Pillar {index + 1}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Active Pillar Display */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Icon Visualization */}
-          <div className="lg:col-span-4 flex justify-center">
-            <div className="relative">
-              <div className="w-48 h-48 bg-linear-to-br from-[#1a3a2e] to-[#2d5a4a] rounded-2xl flex items-center justify-center shadow-2xl">
-                {(() => {
-                  const IconComponent = pillars[activePillar].icon;
-                  return <IconComponent className="w-24 h-24 text-(--luxe-gold)" />;
-                })()}
-              </div>
-              <div className="absolute -inset-4 bg-linear-to-r from-[#5cfaff]/20 to-[#9effc7]/20 rounded-3xl blur-xl -z-10"></div>
-            </div>
+        {/* Bio-Cellular Orbital Matrix */}
+        <div className="relative min-h-[600px] flex items-center justify-center py-20 overflow-hidden lg:overflow-visible">
+          {/* Background Decorative Rings */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+            <div className="w-[300px] h-[300px] border-2 border-(--luxe-gold) rounded-full animate-[spin_20s_linear_infinite]" />
+            <div className="absolute w-[450px] h-[450px] border-2 border-[#1a3a2e] rounded-full animate-[spin_35s_linear_infinite_reverse]" />
+            <div className="absolute w-[600px] h-[600px] border-2 border-(--luxe-gold) rounded-full animate-[spin_50s_linear_infinite]" />
           </div>
 
-          {/* Pillar Details */}
-          <div className="lg:col-span-8 space-y-4">
-            <h3 className="text-2xl font-semibold text-[#1a3a2e]">
-              {pillars[activePillar].headline}
-            </h3>
-            <ul className="space-y-3">
-              {pillars[activePillar].points.map((point, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-(--luxe-gold) rounded-full mt-2 shrink-0"></div>
-                  <span className="text-gray-700">{point}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-6 p-4 bg-[#f0f7f4] border-l-4 border-[#8fb996] rounded">
-              <p className="text-[#1a3a2e] font-medium">
-                <span className="text-(--luxe-gold)">BENEFIT:</span> {pillars[activePillar].benefit}
-              </p>
+          <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center z-10">
+            {/* Left Side: Interactive Orbital Diagram */}
+            <div className="relative w-full aspect-square max-w-[500px] mx-auto">
+              {/* Central Core */}
+              <div className="absolute top-1/2 left-1/2 -tr-1/2 w-32 h-32 bg-linear-to-br from-[#1a3a2e] to-[#2d5a4a] rounded-full flex items-center justify-center shadow-[0_0_50px_rgba(26,58,46,0.3)] border-2 border-(--luxe-gold)/30 z-20">
+                <Shield className="w-12 h-12 text-(--luxe-gold) animate-pulse" />
+                <div className="absolute -inset-4 border border-(--luxe-gold)/20 rounded-full animate-ping" />
+              </div>
+
+              {/* Orbiting Nodes (Pillars) */}
+              {/* Desktop Orbital Layout | Mobile Helix Stack */}
+              <div className="absolute inset-0 hidden lg:block">
+                {pillars.map((pillar, index) => {
+                  const angle = (index * 360) / pillars.length;
+                  const radius = 200; // Radius in pixels
+                  const x = Math.cos((angle * Math.PI) / 180) * radius;
+                  const y = Math.sin((angle * Math.PI) / 180) * radius;
+
+                  return (
+                    <button
+                      key={index}
+                      onClick={() => setActivePillar(index)}
+                      className="absolute top-1/2 left-1/2 -tr-1/2 group transition-all duration-500 hover:z-30"
+                      style={{
+                        transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
+                      }}
+                    >
+                      <div className={`relative p-5 rounded-2xl border-2 transition-all duration-500 ${activePillar === index
+                        ? "bg-[#1a3a2e] border-(--luxe-gold) scale-125 shadow-[0_0_30px_rgba(212,175,55,0.4)]"
+                        : "bg-white border-gray-100 hover:border-[#8fb996] scale-100 shadow-md"
+                        }`}>
+                        <pillar.icon className={`w-8 h-8 ${activePillar === index ? "text-(--luxe-gold)" : "text-[#1a3a2e]"}`} />
+
+                        {/* Connecting Line to Core */}
+                        <div className={`absolute top-1/2 left-1/2 h-0.5 bg-linear-to-r from-(--luxe-gold)/50 to-transparent origin-left -z-10 transition-all duration-500 ${activePillar === index ? "w-48" : "w-0"}`}
+                          style={{ transform: `rotate(${angle + 180}deg)` }} />
+                      </div>
+
+                      {/* Label Label */}
+                      <span className={`absolute top-full left-1/2 -tr-x-1/2 mt-4 text-xs font-bold uppercase tracking-widest whitespace-nowrap transition-all duration-300 ${activePillar === index ? "opacity-100 text-(--luxe-gold)" : "opacity-0 text-gray-400 group-hover:opacity-100"}`}>
+                        Pillar 0{index + 1}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Mobile Interaction Area - Simplified Cluster */}
+              <div className="flex lg:hidden flex-wrap justify-center gap-4 py-10">
+                {pillars.map((pillar, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActivePillar(index)}
+                    className={`p-4 rounded-xl border-2 transition-all duration-300 ${activePillar === index
+                      ? "bg-[#1a3a2e] border-(--luxe-gold) scale-110 shadow-lg"
+                      : "bg-white border-gray-200"
+                      }`}
+                  >
+                    <pillar.icon className={`w-6 h-6 ${activePillar === index ? "text-(--luxe-gold)" : "text-[#1a3a2e]"}`} />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Side: Narrative Display */}
+            <div className="space-y-8 bg-linear-to-br from-white/80 to-transparent p-10 rounded-3xl backdrop-blur-sm border border-white/50 shadow-2xl relative overflow-hidden group">
+              {/* Pillar Numbering Watermark */}
+              <div className="absolute -top-20 right-2 text-[180px] font-black text-[#1a3a2e]/5 select-none transition-all duration-700">
+                0{activePillar + 1}
+              </div>
+
+              <div className="relative z-10 space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-0.5 bg-(--luxe-gold)" />
+                  <span className="text-(--luxe-gold) font-bold uppercase tracking-widest text-sm">Pillar Strategy</span>
+                </div>
+
+                <h3 className="text-4xl font-bold text-[#1a3a2e] leading-tight">
+                  {pillars[activePillar].headline}
+                </h3>
+
+                <ul className="space-y-4">
+                  {pillars[activePillar].points.map((point, i) => (
+                    <li key={i} className="flex items-start gap-4 group/li">
+                      <div className="w-6 h-6 rounded-full bg-[#f0f7f4] flex items-center justify-center shrink-0 group-hover/li:bg-[#1a3a2e] transition-colors duration-300">
+                        <Zap className="w-3 h-3 text-[#1a3a2e] group-hover/li:text-(--luxe-gold)" />
+                      </div>
+                      <span className="text-lg text-gray-700 leading-relaxed font-medium">{point}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="pt-8 border-t border-gray-100">
+                  <div className="flex flex-col gap-2">
+                    <span className="text-(--luxe-gold) font-bold text-xs uppercase tracking-widest">Protocol Benefit</span>
+                    <p className="text-xl font-semibold text-[#1a3a2e] leading-snug">
+                      {pillars[activePillar].benefit}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Decorative Corner Element */}
+              <div className="absolute bottom-0 right-0 w-32 h-32 bg-linear-to-tl from-(--luxe-gold)/10 to-transparent -tr-br-2xl" />
             </div>
           </div>
-        </div>
-
-        {/* All Pillars Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mt-12">
-          {pillars.map((pillar, index) => {
-            return (
-              <div
-                key={index}
-                onClick={() => setActivePillar(index)}
-                className={`p-6 rounded-xl border-2 cursor-pointer transition-all ${activePillar === index
-                  ? "bg-[#1a3a2e] text-white border-(--luxe-gold) shadow-lg"
-                  : "bg-gray-50 border-gray-200 hover:border-[#8fb996]"
-                  }`}
-              >
-                <pillar.icon className={`w-10 h-10 mb-4 ${activePillar === index ? "text-(--luxe-gold)" : "text-[#1a3a2e]"}`} />
-                <h4 className="font-semibold text-sm mb-2">{pillar.headline}</h4>
-                <p className={`text-xs ${activePillar === index ? "text-gray-300" : "text-gray-600"}`}>
-                  {pillar.benefit}
-                </p>
-              </div>
-            );
-          })}
         </div>
       </section>
 
@@ -111,34 +151,52 @@ export default function ProductDeepDive() {
           <p className="text-gray-300 mt-2">Anatomical Body System Mapping</p>
         </div>
 
-        {/* Target Areas Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Target Areas Grid - Redesigned as Scientific Nodes */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {targetAreas.map((area, index) => {
             return (
               <div
                 key={index}
-                className="bg-gray-50 border-2 border-gray-200 rounded-xl p-6 hover:border-(--luxe-gold) hover:shadow-lg transition-all"
+                className="group relative bg-linear-to-b from-[#1a3a2e]/90 to-[#1a3a2e] border border-white/10 rounded-2xl p-7 hover:border-(--luxe-gold)/50 hover:shadow-[0_20px_50px_rgba(26,58,46,0.5)] transition-all duration-500 overflow-hidden"
               >
-                {/* Icon and Title side by side */}
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 bg-[#1a3a2e] rounded-lg flex items-center justify-center shrink-0">
-                    <area.icon className="w-6 h-6 text-(--luxe-gold)" />
+                {/* Decorative Background Element */}
+                <div className="absolute top-0 right-0 -tr-1/4 w-32 h-32 bg-(--luxe-gold)/5 rounded-full blur-3xl group-hover:bg-(--luxe-gold)/10 transition-all duration-500" />
+
+                {/* Icon Section with Styled Frame */}
+                <div className="relative mb-8 w-16 h-16 mx-auto">
+                  <div className="absolute inset-0 bg-(--luxe-gold)/20 rounded-xl rotate-45 group-hover:rotate-90 transition-transform duration-700" />
+                  <div className="absolute inset-0 border border-(--luxe-gold)/30 rounded-xl -rotate-12 group-hover:rotate-0 transition-transform duration-500" />
+                  <div className="relative w-full h-full bg-[#1a3a2e] rounded-xl flex items-center justify-center shadow-lg border border-white/5 z-10">
+                    <area.icon className="w-8 h-8 text-(--luxe-gold) group-hover:scale-110 transition-transform duration-500" />
                   </div>
-                  <h3 className="text-[#1a3a2e] leading-tight">{area.title}</h3>
+                  {/* Pulse Effect */}
+                  <div className="absolute inset-0 bg-(--luxe-gold)/40 rounded-xl blur-md opacity-0 group-hover:opacity-100 animate-pulse transition-opacity duration-500" />
                 </div>
 
-                {/* Centered italic quote */}
-                <p className="text-sm text-gray-700 mb-4 italic text-center">"{area.description}"</p>
+                {/* Content Section */}
+                <div className="relative z-10 text-center space-y-4">
+                  <h3 className="text-xl font-bold text-white tracking-tight">
+                    {area.title}
+                  </h3>
 
-                {/* Bullet points */}
-                <ul className="space-y-2">
-                  {area.points.map((point, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
-                      <div className="w-1.5 h-1.5 bg-[#8fb996] rounded-full mt-1.5 shrink-0"></div>
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
+                  <div className="w-12 h-1 mx-auto bg-linear-to-r from-transparent via-(--luxe-gold) to-transparent opacity-30 group-hover:opacity-100 transition-opacity duration-500" />
+
+                  <p className="text-sm text-(--luxe-gold)/90 font-medium italic min-h-[40px] flex items-center justify-center">
+                    "{area.description}"
+                  </p>
+
+                  <ul className="space-y-3 pt-2">
+                    {area.points.map((point, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm text-gray-300 group-hover:text-white transition-colors duration-300">
+                        <div className="w-1.5 h-1.5 bg-(--luxe-gold)/60 rounded-full mt-1.5 shrink-0 group-hover:bg-(--luxe-gold) transition-colors" />
+                        <span className="text-left leading-relaxed">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Bottom Highlight Line */}
+                <div className="absolute bottom-0 left-0 w-0 h-1 bg-(--luxe-gold) group-hover:w-full transition-all duration-700" />
               </div>
             );
           })}

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Navbar from "../components/(header)/Navbar";
 import Footer from "../components/(footer)/Footer";
-
+import CartSidebar from "../components/CartSidebar";
 
 export default function LayoutClient({
     children,
@@ -30,6 +30,7 @@ export default function LayoutClient({
         <>
             {!hideNavbar && <Navbar />}
             {children}
+            <CartSidebar />
             <Footer />
         </>
     );
