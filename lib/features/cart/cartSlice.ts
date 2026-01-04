@@ -22,12 +22,13 @@ export const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        addToCart: (state, action: PayloadAction<Omit<CartItem, 'quantity'>>) => {
+        addToCart: (state, action: PayloadAction<Omit<CartItem, 'quantity'> & { quantity?: number }>) => {
+            const quantityToAdd = action.payload.quantity || 1;
             const existingItem = state.items.find((item) => item.id === action.payload.id);
             if (existingItem) {
-                existingItem.quantity += 1;
+                existingItem.quantity += quantityToAdd;
             } else {
-                state.items.push({ ...action.payload, quantity: 1 });
+                state.items.push({ ...action.payload, quantity: quantityToAdd });
             }
             state.isOpen = true; // Open cart when item is added
         },

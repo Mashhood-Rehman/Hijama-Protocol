@@ -4,12 +4,18 @@ import React from 'react';
 import StudyCard from '../components/(studiesComponents)/StudyCard';
 import Disclaimer from '../components/(common)/Disclaimer';
 import { studiesData } from '@/app/helper/data';
+import { PremiumLeaf, DnaHelix } from '../components/(common)/Vectors';
 
 export default function StudiesPage() {
     return (
         <main className="min-h-screen bg-white">
 
-            <section className="pt-32 pb-24 px-6 md:px-12 lg:px-24 bg-gray-50">
+            <section className="pt-32 pb-24 px-6 md:px-12 lg:px-24 bg-gray-50 relative overflow-hidden">
+                {/* Leaf Structure */}
+                <PremiumLeaf className="absolute top-[10%] left-[5%] w-64 h-64 -rotate-12 text-green-700/20 pointer-events-none" />
+                {/* DNA Structure */}
+                <DnaHelix className="absolute bottom-[0%] right-[10%] w-40 h-80 rotate-12 text-amber-600/20 pointer-events-none" />
+
                 <div className="max-w-7xl mx-auto text-center space-y-6">
                     <h1 className="text-4xl md:text-6xl font-bold text-gray-900">
                         Access Scientific Studies

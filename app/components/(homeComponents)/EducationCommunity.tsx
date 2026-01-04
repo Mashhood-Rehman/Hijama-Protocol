@@ -57,13 +57,13 @@ export default function EducationCommunity() {
                 ))}
               </ul>
 
-              <button className={`inline-flex items-center gap-2 w-full justify-center py-3 rounded-lg font-semibold transition ${resource.featured
+              <a href={resource.link || '#'} className={`inline-flex items-center gap-2 w-full justify-center py-3 rounded-lg font-semibold transition ${resource.featured
                 ? "bg-(--luxe-gold) text-white hover:bg-[#d4b87a]"
                 : "bg-[#1a3a2e] text-white hover:bg-[#2d5a4a]"
                 }`}>
                 {resource.action}
                 <ICONS.ExternalLink className="w-4 h-4" />
-              </button>
+              </a>
             </div>
           );
         })}

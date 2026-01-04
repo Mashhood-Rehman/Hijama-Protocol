@@ -1,9 +1,11 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 
 interface StudyCardProps {
+    slug?: string;
     speaker: string;
     role: string;
     topic: string;
@@ -12,7 +14,7 @@ interface StudyCardProps {
     image: string;
 }
 
-export default function StudyCard({ speaker, role, topic, findings, warning, image }: StudyCardProps) {
+export default function StudyCard({ slug, speaker, role, topic, findings, warning, image }: StudyCardProps) {
     return (
         <div className="bg-white rounded-3xl overflow-hidden shadow-xl border border-gray-100 transition-all hover:shadow-2xl group">
             <div className="grid grid-cols-1 md:grid-cols-2">
@@ -45,12 +47,18 @@ export default function StudyCard({ speaker, role, topic, findings, warning, ima
                         <p className="text-sm text-red-700 font-bold uppercase tracking-tight mb-1">Warning:</p>
                         <p className="text-gray-800 italic">{warning}</p>
                     </div>
-                    <button className="btn btn-green w-full py-4 text-white font-semibold flex items-center justify-center gap-2">
-                        Access Full Study
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                    </button>
+                    {slug ? (
+                        <Link href={`/studies/${slug}`} className="btn btn-green w-full py-4 text-white font-semibold flex items-center justify-center gap-2">
+                            Access Full Study
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                        </Link>
+                    ) : (
+                        <button className="btn btn-green w-full py-4 text-white font-semibold flex items-center justify-center gap-2 opacity-50 cursor-not-allowed">
+                            Summary Only
+                        </button>
+                    )}
                 </div>
             </div>
         </div>

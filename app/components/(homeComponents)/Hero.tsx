@@ -3,30 +3,40 @@
 import ICONS from "@/app/assets/Icons";
 import { useEffect, useState } from "react";
 import { PremiumLeaf, DnaHelix } from "../(common)/Vectors";
+import Image from 'next/image';
+import IMAGES from "@/app/assets/Images";
 
-const rotatingText = [
-  "RÜH-ARMOR™ — Strengthen Your Core, Preserve Your RÜH",
-  "NUR-ARMOR™ — Light the Path to Timeless Wellness",
-  "Augmented NAC™ — The Ultimate Spike Protein Defense"
-];
+import { useDispatch } from "react-redux";
+import { addToCart, setCartOpen } from "@/lib/features/cart/cartSlice";
 
-const trustBadges = [
-  "Vegan",
-  "No Gluten",
-  "No Soy",
-  "Non-GMO",
-  "High Absorption",
-  "Laboratory Tested",
-];
 
 export default function Hero() {
+  const dispatch = useDispatch();
   const [textIndex, setTextIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
   const products = [
-    { name: "RÜH-ARMOR", color: "from-blue-500 to-blue-700" },
-    { name: "NUR-ARMOR", color: "from-blue-400 to-blue-600" },
-    { name: "AUG. NAC", color: "from-blue-500 to-blue-700" },
+    {
+      id: "ruh-armor",
+      name: "RÜH-ARMOR™",
+      color: "from-blue-500 to-blue-700",
+      image: IMAGES.DETOX_RUH_ARMOR,
+      price: 99.00
+    },
+    {
+      id: "nur-armor",
+      name: "NUR-ARMOR™",
+      color: "from-blue-400 to-blue-600",
+      image: IMAGES.PARASITE_CLEANSE,
+      price: 119.00
+    },
+    {
+      id: "augmented-nac",
+      name: "Augmented NAC™",
+      color: "from-blue-500 to-blue-700",
+      image: IMAGES.NAC3,
+      price: 149.00
+    },
   ];
 
   const handlePrev = () => {
@@ -39,6 +49,18 @@ export default function Hero() {
 
   const getProductIndex = (offset: number) => {
     return (textIndex + offset + products.length) % products.length;
+  };
+
+  const handleBuyNow = () => {
+    const activeProduct = products[textIndex];
+    dispatch(addToCart({
+      id: activeProduct.id,
+      name: activeProduct.name,
+      price: activeProduct.price,
+      quantity: quantity,
+      images: [activeProduct.image] // Adapter for CartItem interface
+    }));
+    dispatch(setCartOpen(true));
   };
 
   return (
@@ -129,6 +151,10 @@ export default function Hero() {
                   transition: 'all 0.7s cubic-bezier(0.4, 0, 0.2, 1)',
                 };
 
+                // ... (handlers)
+
+                // ... (render)
+
                 return (
                   <div
                     key={index}
@@ -136,19 +162,33 @@ export default function Hero() {
                     className="absolute transition-all transform-gpu pointer-events-none"
                   >
                     {/* Card Container - only middle card is interactive to avoid click-conflicts */}
-                    <div className={`relative w-64 h-96 md:w-80 md:h-[480px]  border ${isActive ? 'border-white/20 ring-1 ring-white/10' : 'border-white/5'} rounded-4xl shadow-2xl flex flex-col items-center justify-center p-8 overflow-hidden`}>
+                    <div className={`relative w-64 h-96 md:w-80 md:h-[400px] bg-white rounded-4xl shadow-2xl flex flex-col items-center justify-center overflow-hidden border ${isActive ? 'border-(--luxe-gold)/30' : 'border-transparent'}`}>
 
                       {/* Shadow for side items */}
-                      {!isActive && <div className="absolute inset-0 bg-black/50 z-10"></div>}
+                      {!isActive && <div className="absolute inset-0 bg-black/60 z-10"></div>}
 
                       {/* Glow for active item */}
-                      {isActive && <div className="absolute inset-0 bg-(--luxe-gold) opacity-[0.08] blur-3xl"></div>}
+                      {isActive && <div className="absolute inset-0 bg-(--luxe-gold) opacity-[0.05] blur-3xl"></div>}
 
-                      <div className="w-full h-full border border-dashed border-white/10 rounded-xl flex items-center justify-center text-center relative z-20">
-                        <span className={`uppercase tracking-widest ${isActive ? 'text-white font-bold text-sm' : 'text-gray-500 text-xs'}`}>
+                      {/* Product Image */}
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={product.image}
+                          alt={product.name}
+                          fill
+                          className="object-contain"
+                        />
+                        {/* Gradient Overlay for Text Visibility if needed, though clean images are better */}
+                        <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent"></div>
+                      </div>
+
+                      {/* Label Overlay */}
+                      <div className="absolute bottom-6 left-0 right-0 text-center z-20">
+                        <span className={`inline-block px-4 py-1 rounded-full backdrop-blur-md bg-white/10 text-white border border-white/20 uppercase tracking-widest ${isActive ? 'font-bold text-sm' : 'text-xs'}`}>
                           {product.name}
                         </span>
                       </div>
+
                     </div>
                   </div>
                 );
@@ -179,7 +219,7 @@ export default function Hero() {
             </div>
 
             {/* Buy Now Button */}
-            <button className="btn btn-brown rounded-full px-10 py-3 flex items-center gap-2 group cursor-pointer">
+            <button onClick={handleBuyNow} className="btn btn-brown rounded-full px-10 py-3 flex items-center gap-2 group cursor-pointer">
               Buy Now
               <svg className="group-hover:translate-x-1 transition-transform" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14m-7-7 7 7-7 7" /></svg>
             </button>
