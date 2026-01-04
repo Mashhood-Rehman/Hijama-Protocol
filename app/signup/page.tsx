@@ -6,6 +6,7 @@ import ICONS from "../assets/Icons";
 import { useRegisterMutation, useLoginMutation } from "@/lib/features/auth/authApi";
 
 export default function SignupPage() {
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -31,7 +32,7 @@ export default function SignupPage() {
 
         try {
             // 1. Register
-            const regResult = await register({ email, password }).unwrap();
+            const regResult = await register({ name, email, password }).unwrap();
             console.log("Registration successful:", regResult);
 
             // 2. Automatically Login
@@ -77,6 +78,23 @@ export default function SignupPage() {
                     )}
 
                     <form onSubmit={handleSubmit} className="space-y-4 relative z-10">
+                        <div className="space-y-2">
+                            <label className="block text-sm font-medium text-gray-300 ml-1">Full Name</label>
+                            <div className="relative group/field">
+                                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within/field:text-(--luxe-gold) transition-colors">
+                                    <ICONS.Users size={18} />
+                                </span>
+                                <input
+                                    type="text"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    className="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-(--luxe-gold) focus:border-transparent focus:bg-white/10 transition-all text-sm"
+                                    placeholder="John Doe"
+                                    required
+                                />
+                            </div>
+                        </div>
+
                         <div className="space-y-2">
                             <label className="block text-sm font-medium text-gray-300 ml-1">Email Address</label>
                             <div className="relative group/field">

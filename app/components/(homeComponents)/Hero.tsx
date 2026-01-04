@@ -2,6 +2,7 @@
 
 import ICONS from "@/app/assets/Icons";
 import { useEffect, useState } from "react";
+import { PremiumLeaf, DnaHelix } from "../(common)/Vectors";
 
 const rotatingText = [
   "RÜH-ARMOR™ — Strengthen Your Core, Preserve Your RÜH",
@@ -45,12 +46,16 @@ export default function Hero() {
 
       <section className="relative  bg-(--deep-green-dark) text-white min-h-screen overflow-hidden flex flex-col justify-between p-8 md:p-16">
 
-        {/* BACKGROUND LEAF PATTERNS */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
-          <LeafSVG className="absolute  top-[10%] left-[5%] -rotate-45 w-48 h-48 text-(--herbal-sage)" />
-          <LeafSVG className="absolute top-[40%] right-[10%] rotate-15 w-64 h-64 text-(--herbal-sage)" />
-          <LeafSVG className="absolute bottom-[20%] left-[15%] rotate-[-15deg] w-56 h-56 text-(--herbal-sage)" />
-          <LeafSVG className="absolute top-[70%] right-[20%] rotate-160 w-40 h-40 text-(--herbal-sage)" />
+        {/* BACKGROUND VECTORS */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-10">
+          <PremiumLeaf className="absolute top-[10%] left-[5%] -rotate-45 w-48 h-48 text-(--herbal-sage)" />
+          <PremiumLeaf className="absolute top-[40%] right-[10%] rotate-15 w-64 h-64 text-(--herbal-sage)" />
+          <PremiumLeaf className="absolute bottom-[20%] left-[15%] rotate-[-15deg] w-56 h-56 text-(--herbal-sage)" />
+          <PremiumLeaf className="absolute top-[70%] right-[20%] rotate-160 w-40 h-40 text-(--herbal-sage)" />
+
+          {/* DNA Helix Vectors */}
+          <DnaHelix className="absolute top-[15%] right-[5%] w-32 h-64 text-white/20 rotate-12" />
+          <DnaHelix className="absolute bottom-[10%] left-[2%] w-24 h-48 text-white/20 -rotate-12" />
         </div>
 
         {/* MAIN CONTENT AREA */}
@@ -187,15 +192,3 @@ export default function Hero() {
 
 
 
-function LeafSVG({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 100 100"
-      fill="currentColor"
-    >
-      <path d="M50 0C50 0 10 30 10 60C10 85 30 95 50 100C70 95 90 85 90 60C90 30 50 0 50 0ZM50 90C50 90 20 80 20 60C20 45 40 30 50 10C60 30 80 45 80 60C80 80 50 90 50 90Z" opacity="0.5" />
-      <path d="M50 100V10" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.3" />
-    </svg>
-  );
-}

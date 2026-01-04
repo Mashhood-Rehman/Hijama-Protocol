@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import SectionHeader from "../(common)/SectionHeader";
 import ProductCard from "./ProductCard";
 import { useGetProductsQuery } from "@/lib/features/products/productsApi";
+import { PremiumLeaf, DnaHelix } from "../(common)/Vectors";
 
 export default function ProductStore() {
     const { data: products = [], isLoading: loading, isError } = useGetProductsQuery();
@@ -24,8 +25,15 @@ export default function ProductStore() {
     }
 
     return (
-        <section id="store" className="scroll-mt-32">
-            <div className="container mx-auto px-4">
+        <section id="store" className="scroll-mt-32 relative overflow-hidden">
+            {/* Background Decoration */}
+            <div className="absolute inset-0 pointer-events-none opacity-5">
+                <DnaHelix className="absolute top-[10%] left-[-5%] w-32 h-64 rotate-12 text-gray-400" />
+                <DnaHelix className="absolute bottom-[20%] right-[-5%] w-32 h-64 -rotate-12 text-gray-400" />
+                <PremiumLeaf className="absolute top-[40%] right-[2%] w-48 h-48 rotate-45 text-(--herbal-sage)" />
+            </div>
+
+            <div className="container mx-auto px-4 relative z-10">
                 <div className="text-center mb-16">
                     <SectionHeader heading="The Protocol Shop" />
                     <p className="text-gray-500 max-w-2xl mx-auto text-lg -mt-8">

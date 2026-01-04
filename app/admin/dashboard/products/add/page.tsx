@@ -18,7 +18,7 @@ function AddProductContent() {
         stock: "",
         description: "",
         status: "Draft",
-        imageUrl: ""
+        images: [] as string[]
     });
 
     const [isLoading, setIsLoading] = useState(false);
@@ -37,7 +37,7 @@ function AddProductContent() {
                             stock: data.stock !== undefined && data.stock !== null ? data.stock.toString() : "0",
                             description: data.description || "",
                             status: data.status || "Draft",
-                            imageUrl: (data.images && data.images.length > 0) ? data.images[0] : ""
+                            images: data.images || []
                         });
                     } else {
                         const errorData = await response.json();
@@ -53,14 +53,16 @@ function AddProductContent() {
     }, [isEdit, productId]);
 
     const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (!file) return;
+        const files = e.target.files;
+        if (!files || files.length === 0) return;
 
         setIsUploading(true);
-        const uploadToast = toast.loading("Uploading image...");
+        const uploadToast = toast.loading(`Uploading ${files.length} image(s)...`);
 
         const formDataUpload = new FormData();
-        formDataUpload.append("file", file);
+        Array.from(files).forEach(file => {
+            formDataUpload.append("file", file);
+        });
 
         try {
             const response = await fetch("/api/upload", {
@@ -70,8 +72,11 @@ function AddProductContent() {
 
             if (response.ok) {
                 const data = await response.json();
-                setFormData(prev => ({ ...prev, imageUrl: data.url }));
-                toast.success("Image uploaded successfully", { id: uploadToast });
+                setFormData(prev => ({
+                    ...prev,
+                    images: [...prev.images, ...data.urls]
+                }));
+                toast.success("Images uploaded successfully", { id: uploadToast });
             } else {
                 const errorData = await response.json();
                 toast.error(errorData.error || "Upload failed", { id: uploadToast });
@@ -82,6 +87,13 @@ function AddProductContent() {
         } finally {
             setIsUploading(false);
         }
+    };
+
+    const removeImage = (index: number) => {
+        setFormData(prev => ({
+            ...prev,
+            images: prev.images.filter((_, i) => i !== index)
+        }));
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -98,7 +110,7 @@ function AddProductContent() {
                     ...formData,
                     price: parseFloat(formData.price),
                     stock: parseInt(formData.stock) || 0,
-                    images: [formData.imageUrl || "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=2070"]
+                    images: formData.images.length > 0 ? formData.images : ["https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=2070"]
                 }),
             });
 
@@ -220,27 +232,41 @@ function AddProductContent() {
                     </div>
 
                     <div className="bg-white/5 border border-white/10 p-6 rounded-2xl space-y-4">
-                        <h3 className="text-lg font-semibold text-white">Product Image</h3>
+                        <div className="flex items-center justify-between">
+                            <h3 className="text-lg font-semibold text-white">Product Images</h3>
+                            <span className="text-xs text-gray-400">{formData.images.length} images uploaded</span>
+                        </div>
+
+                        {/* Image Grid */}
+                        {formData.images.length > 0 && (
+                            <div className="grid grid-cols-2 gap-3 mb-4">
+                                {formData.images.map((url, index) => (
+                                    <div key={index} className="relative group aspect-square rounded-xl overflow-hidden border border-white/10 bg-white/5">
+                                        <img src={url} alt={`Product ${index}`} className="w-full h-full object-cover" />
+                                        <button
+                                            type="button"
+                                            onClick={(e) => { e.stopPropagation(); removeImage(index); }}
+                                            className="absolute top-2 right-2 p-1.5 bg-red-500/80 hover:bg-red-500 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-all cursor-pointer"
+                                        >
+                                            <ICONS.Trash size={14} />
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
 
                         <div
                             onClick={() => fileInputRef.current?.click()}
-                            className="border-2 border-dashed border-white/10 rounded-xl p-8 flex flex-col items-center justify-center text-center group hover:border-(--luxe-gold) transition-colors cursor-pointer relative overflow-hidden h-48"
+                            className={`border-2 border-dashed border-white/10 rounded-xl p-8 flex flex-col items-center justify-center text-center group hover:border-(--luxe-gold) transition-colors cursor-pointer relative overflow-hidden ${formData.images.length === 0 ? 'h-48' : 'h-32'}`}
                         >
-                            {formData.imageUrl ? (
-                                <img
-                                    src={formData.imageUrl}
-                                    alt="Preview"
-                                    className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-30 transition-opacity"
-                                />
-                            ) : null}
-
                             <div className="relative z-10">
                                 {isUploading ? (
                                     <span className="w-8 h-8 border-3 border-white/20 border-t-(--luxe-gold) rounded-full animate-spin inline-block"></span>
                                 ) : (
                                     <>
-                                        <ICONS.Droplet className="text-gray-500 group-hover:text-(--luxe-gold) mb-2 mx-auto" size={32} />
-                                        <p className="text-sm text-gray-400">Click to upload image</p>
+                                        <ICONS.Package className="text-gray-500 group-hover:text-(--luxe-gold) mb-2 mx-auto" size={32} />
+                                        <p className="text-sm text-gray-400">Click to upload more images</p>
+                                        <p className="text-[10px] text-gray-500 mt-1">PNG, JPG, WebP supported</p>
                                     </>
                                 )}
                             </div>
@@ -250,17 +276,7 @@ function AddProductContent() {
                                 onChange={handleFileUpload}
                                 className="hidden"
                                 accept="image/*"
-                            />
-                        </div>
-
-                        <div className="pt-4">
-                            <label className="block text-sm font-medium text-gray-400 mb-2">Or Image URL</label>
-                            <input
-                                type="text"
-                                className="w-full bg-white/5 border border-white/10 rounded-lg py-2.5 px-4 text-white focus:outline-none focus:ring-1 focus:ring-(--luxe-gold)"
-                                placeholder="https://unsplash.com/..."
-                                value={formData.imageUrl}
-                                onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
+                                multiple
                             />
                         </div>
                     </div>

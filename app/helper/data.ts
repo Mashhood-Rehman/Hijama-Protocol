@@ -54,7 +54,8 @@ export const footerLinks = {
     { label: "Augmented NAC™", href: "/augmented-nac" },
   ],
   company: [
-    { label: "Our Story", href: "/our-story" },
+    { label: "Our Story", href: "/about" },
+    { label: "Blogs", href: "/blogs" },
     { label: "Research", href: "/research" },
     { label: "Testimonials", href: "/testimonials" },
     { label: "Contact Us", href: "/contact" },
@@ -69,6 +70,7 @@ export const footerLinks = {
 
 export const mainNavItems = [
   { label: "About Us", href: "/about" },
+  { label: "Blogs", href: "/blogs" },
   { label: "RÜH-ARMOR™", href: "/ruh-armor" },
   { label: "NUR-ARMOR™", href: "/nur-armor" },
   { label: "Augmented NAC™", href: "/augmented-nac" },

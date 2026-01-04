@@ -8,6 +8,7 @@ import ProductHighlights from "./components/(homeComponents)/ProductHighlights";
 import Methodology from "./components/(homeComponents)/Methodology";
 import StoreBundles from "./components/(homeComponents)/StoreBundles";
 import ProductStore from "./components/(homeComponents)/ProductStore";
+import LatestBlogs from "./components/(homeComponents)/LatestBlogs";
 import Testimonials from "./components/(homeComponents)/Testimonials";
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
         <ProductDeepDive />
         <StoreBundles />
         <Testimonials />
+        <LatestBlogs />
         <EducationCommunity />
         <AffiliateProgram />
         <Methodology />

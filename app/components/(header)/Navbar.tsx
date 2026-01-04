@@ -18,7 +18,9 @@ export default function Navbar() {
     const [scrolled, isScrolled] = useState(false);
     const [tooltip, setTooltip] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [authDropdownOpen, setAuthDropdownOpen] = useState(false);
     const dropdownTimer = useRef<NodeJS.Timeout | null>(null);
+    const authDropdownTimer = useRef<NodeJS.Timeout | null>(null);
 
     const dispatch = useDispatch();
     const cartItems = useSelector((state: RootState) => state.cart.items);
@@ -63,6 +65,19 @@ export default function Navbar() {
         }, 200);
     };
 
+    const handleAuthMouseEnter = () => {
+        if (authDropdownTimer.current) {
+            clearTimeout(authDropdownTimer.current);
+        }
+        setAuthDropdownOpen(true);
+    };
+
+    const handleAuthMouseLeave = () => {
+        authDropdownTimer.current = setTimeout(() => {
+            setAuthDropdownOpen(false);
+        }, 200);
+    };
+
     const [user, setUser] = useState<any>(null);
 
     useEffect(() => {
@@ -83,9 +98,6 @@ export default function Navbar() {
     };
 
     useGoogleTranslate();
-
-
-
 
     return (
         <>
@@ -170,29 +182,61 @@ export default function Navbar() {
 
                         {/* Auth Section */}
                         {user ? (
-                            <div className="flex items-center gap-4">
-                                {user.role === "ADMIN" && (
-                                    <Link
-                                        href="/admin/dashboard"
-                                        className="text-sm font-semibold hover:text-(--luxe-gold) transition cursor-pointer"
-                                    >
-                                        Dashboard
-                                    </Link>
-                                )}
-                                <button
-                                    onClick={handleLogout}
-                                    className="flex items-center gap-2 px-4 py-2 border border-gray-200 text-gray-700 rounded-full hover:bg-gray-50 transition-all text-sm font-medium cursor-pointer"
-                                >
-                                    <ICONS.LogOut size={16} />
-                                    <span>Logout</span>
+                            <div
+                                className="relative"
+                                onMouseEnter={handleAuthMouseEnter}
+                                onMouseLeave={handleAuthMouseLeave}
+                            >
+                                <button className={`w-10 h-10 rounded-full flex items-center justify-center transition-all cursor-pointer border ${scrolled ? 'bg-white/10 border-white/20 text-white' : 'bg-gray-100 border-gray-200 text-gray-600'}`}>
+                                    <ICONS.User size={20} />
                                 </button>
+
+                                {authDropdownOpen && (
+                                    <div className="absolute top-full right-0 mt-2 w-64 bg-white shadow-2xl rounded-2xl py-4 z-50 border border-gray-100 animate-in fade-in slide-in-from-top-2 duration-200">
+                                        <div className="px-4 pb-3 border-b border-gray-50 mb-3 flex items-center gap-3">
+                                            <div className="w-10 h-10 rounded-full bg-(--luxe-gold)/10 flex items-center justify-center text-(--luxe-gold)">
+                                                <ICONS.User size={20} />
+                                            </div>
+                                            <div className="flex-1 min-w-0 text-left">
+                                                <p className="text-sm font-semibold text-gray-900 truncate">{user.name || "User"}</p>
+                                                <p className="text-xs text-gray-500 truncate">{user.email}</p>
+                                            </div>
+                                        </div>
+
+                                        <div className="px-2 space-y-1">
+                                            {user.role === "ADMIN" && (
+                                                <Link
+                                                    href="/admin/dashboard"
+                                                    className="flex items-center gap-3 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-(--luxe-gold) rounded-xl transition"
+                                                >
+                                                    <ICONS.LayoutDashboard size={18} />
+                                                    <span>Admin Dashboard</span>
+                                                </Link>
+                                            )}
+                                            <Link
+                                                href="/profile"
+                                                className="flex items-center gap-3 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-(--luxe-gold) rounded-xl transition"
+                                            >
+                                                <ICONS.Users size={18} />
+                                                <span>View Profile</span>
+                                            </Link>
+                                            <button
+                                                onClick={handleLogout}
+                                                className="w-full flex items-center gap-3 px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-xl transition cursor-pointer"
+                                            >
+                                                <ICONS.LogOut size={18} />
+                                                <span>Logout</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         ) : (
                             <Link
                                 href="/login"
-                                className="flex items-center gap-2 px-4 py-2 border border-(--luxe-gold) text-(--luxe-gold) rounded-full hover:bg-(--luxe-gold) hover:text-white! transition-all text-sm font-medium"
+                                className={`flex items-center gap-2 px-5 py-2 rounded-full transition-all text-sm font-semibold ${scrolled ? 'bg-white text-(--deep-green) hover:bg-gray-100' : 'bg-(--luxe-gold) text-white hover:shadow-lg hover:shadow-(--luxe-gold)/20'}`}
                             >
-                                <ICONS.LogIn size={16} />
+                                <ICONS.LogIn size={18} />
                                 <span>Login</span>
                             </Link>
                         )}
@@ -211,7 +255,13 @@ export default function Navbar() {
             </nav>
 
             {/* Sidebar */}
-            <Sidebar open={open} setOpen={setOpen} navItems={[...mainNavItems, ...moreNavItems]} />
+            <Sidebar
+                open={open}
+                setOpen={setOpen}
+                navItems={[...mainNavItems, ...moreNavItems]}
+                user={user}
+                onLogout={handleLogout}
+            />
         </>
     );
 }

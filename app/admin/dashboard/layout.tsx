@@ -16,6 +16,7 @@ export default function AdminDashboardLayout({
     const navItems = [
         { label: "Overview", href: "/admin/dashboard", icon: ICONS.LayoutDashboard },
         { label: "Products", href: "/admin/dashboard", icon: ICONS.Package },
+        { label: "Blogs", href: "/admin/dashboard/blogs", icon: ICONS.FileText },
         { label: "Customers", href: "/admin/dashboard/customers", icon: ICONS.Users },
         { label: "Orders", href: "#", icon: ICONS.ShoppingCart },
         { label: "Analytics", href: "#", icon: ICONS.TrendingUp },

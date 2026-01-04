@@ -8,9 +8,11 @@ interface SidebarProps {
   open: boolean;
   setOpen: (state: boolean) => void;
   navItems: { label: string; href: string }[];
+  user: any;
+  onLogout: () => void;
 }
 
-export default function Sidebar({ open, setOpen, navItems }: SidebarProps) {
+export default function Sidebar({ open, setOpen, navItems, user, onLogout }: SidebarProps) {
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
   const mainNavItems = navItems.slice(0, 4);
@@ -86,7 +88,8 @@ export default function Sidebar({ open, setOpen, navItems }: SidebarProps) {
 
             {/* Extra buttons */}
             <div className="border-t border-white/10 pt-3 mt-4 flex flex-col gap-3">
-              <button className="text-sm text-left hover:text-(--luxe-gold) py-2 cursor-pointer">
+              <button className="text-sm text-left hover:text-(--luxe-gold) py-2 cursor-pointer flex items-center gap-2">
+                <ICONS.Headphones size={18} />
                 EN / UR
               </button>
 
@@ -94,6 +97,62 @@ export default function Sidebar({ open, setOpen, navItems }: SidebarProps) {
                 <ICONS.ShoppingCart size={18} />
                 Cart
               </button>
+
+              <div className="border-t border-white/10 pt-3 mt-2 flex flex-col gap-3">
+                {user ? (
+                  <div className="flex flex-col gap-3">
+                    <div className="flex items-center gap-3 py-2">
+                      <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-(--luxe-gold)">
+                        <ICONS.User size={20} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-semibold text-white truncate">{user.name || "User"}</p>
+                        <p className="text-xs text-white/50 truncate">{user.email}</p>
+                      </div>
+                    </div>
+
+                    <Link
+                      href="/profile"
+                      className="text-sm py-2 hover:text-(--luxe-gold) transition flex items-center gap-2"
+                      onClick={() => setOpen(false)}
+                    >
+                      <ICONS.Users size={18} />
+                      View Profile
+                    </Link>
+
+                    {user.role === "ADMIN" && (
+                      <Link
+                        href="/admin/dashboard"
+                        className="text-sm py-2 hover:text-(--luxe-gold) transition flex items-center gap-2"
+                        onClick={() => setOpen(false)}
+                      >
+                        <ICONS.LayoutDashboard size={18} />
+                        Admin Dashboard
+                      </Link>
+                    )}
+
+                    <button
+                      onClick={() => {
+                        onLogout();
+                        setOpen(false);
+                      }}
+                      className="text-sm text-left py-2 text-red-400 hover:text-red-300 transition flex items-center gap-2 cursor-pointer"
+                    >
+                      <ICONS.LogOut size={18} />
+                      Logout
+                    </button>
+                  </div>
+                ) : (
+                  <Link
+                    href="/login"
+                    className="text-sm py-3 bg-(--luxe-gold) text-white rounded-xl text-center font-semibold flex items-center justify-center gap-2"
+                    onClick={() => setOpen(false)}
+                  >
+                    <ICONS.LogIn size={18} />
+                    Login Account
+                  </Link>
+                )}
+              </div>
             </div>
           </div>
         </div>
